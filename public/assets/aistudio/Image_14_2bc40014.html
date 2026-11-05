@@ -1,0 +1,288 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_tab" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-error": "#ffffff", "inverse-surface": "#432b16", "tertiary-fixed": "#cfe5ff", "primary-fixed": "#91f8b8", "on-surface-variant": "#3e4941", "error": "#ba1a1a", "on-surface": "#2b1704", "on-primary": "#ffffff", "inverse-primary": "#74db9d", "on-secondary": "#ffffff", "primary-fixed-dim": "#74db9d", "on-tertiary-fixed-variant": "#004a78", "primary": "#006a3e", "background": "#fff8f5", "surface-container": "#ffeadb", "secondary-fixed-dim": "#e6c446", "outline": "#6e7a70", "tertiary-fixed-dim": "#99cbff", "on-primary-container": "#f6fff5", "on-tertiary": "#ffffff", "outline-variant": "#bdcabe", "surface-container-low": "#fff1e8", "on-primary-fixed-variant": "#00522f", "surface-variant": "#ffdcc1", "surface-tint": "#006d40", "tertiary-container": "#0979bf", "primary-container": "#0e8551", "error-container": "#ffdad6", "secondary-fixed": "#ffe17c", "tertiary": "#00609a", "secondary-container": "#feda5a", "on-tertiary-fixed": "#001d34", "surface-container-lowest": "#ffffff", "surface-bright": "#fff8f5", "on-secondary-fixed-variant": "#564500", "on-secondary-container": "#745f00", "surface-container-highest": "#ffdcc1", "on-tertiary-container": "#fdfcff", "on-error-container": "#93000a", "secondary": "#715c00", "surface-dim": "#fad3b3", "on-secondary-fixed": "#231b00", "on-primary-fixed": "#002110", "inverse-on-surface": "#ffeee2", "on-background": "#2b1704", "surface-container-high": "#ffe3ce", "surface": "#fff8f5" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "gutter": "0.75rem", "margin": "1rem", "space-lg": "1rem", "space-sm": "0.5rem", "space-xl": "1.5rem", "space-md": "0.75rem", "space-xs": "0.25rem" }, "fontFamily": { "headline-md": ["Nunito Sans"], "body-sm": ["Nunito Sans"], "headline-lg": ["Nunito Sans"], "display-hero": ["Nunito Sans"], "label-sm": ["Nunito Sans"], "title-md": ["Nunito Sans"], "body-lg": ["Nunito Sans"], "label-md": ["Nunito Sans"], "label-lg": ["Nunito Sans"], "headline-sm": ["Nunito Sans"], "body-md": ["Nunito Sans"] }, "fontSize": { "headline-md": ["20px", {"lineHeight": "26px", "fontWeight": "700"}], "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}], "headline-lg": ["24px", {"lineHeight": "30px", "fontWeight": "800"}], "display-hero": ["32px", {"lineHeight": "38px", "fontWeight": "800"}], "label-sm": ["10px", {"lineHeight": "14px", "fontWeight": "800"}], "title-md": ["16px", {"lineHeight": "22px", "fontWeight": "700"}], "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "600"}], "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "700"}], "label-lg": ["14px", {"lineHeight": "18px", "fontWeight": "800"}], "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "700"}], "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}] } } } }</script></head><body class="bg-background font-body-md text-body-md text-on-surface flex flex-col min-h-screen antialiased select-none">
+<!-- 1. Slim Top Bar -->
+<header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-md pt-safe">
+<div class="h-14 px-margin flex items-center justify-between">
+<!-- Left: Dewi Sri Logo & Label -->
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center p-1 border border-primary/20">
+<img alt="Dewi Sri Logo" class="h-full w-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw-tYysOfVwxYMn-FcT5ti_uf5yiAsWGYB1PmvdVQ7Oxga_tnLEf_KCPvtY0xBBM_5qwNT89lpjMDNgoyE3GmJ8Aem39rn7BXuNac1JKK0HoVbOqiGaVAE6XWxcykIe3wCr757EZDUNpDj67VGd8HYzBP7E8ywqfVgZCtEGl4apV5G73jW6I2jedOjal2RFrZEgI8gunyVvWhbWIdwFzfAWc9KIYfJM1OmxKN_5sFA">
+</div>
+<span class="font-headline-sm text-base text-primary font-bold tracking-tight">Dewi Sri</span>
+</div>
+<!-- Center: Pet Name -->
+<h1 class="font-headline-md text-lg text-on-surface font-extrabold tracking-tight">Si Kuning</h1>
+<!-- Right: Profile Icon -->
+
+</div>
+</header>
+<!-- Main Area -->
+<main class="flex-1 flex flex-col pt-14 pb-20 px-3 bg-background">
+<!-- 2. Compact Status Row -->
+<div class="w-full mt-2 mb-2.5">
+<div class="bg-surface-container-lowest/90 backdrop-blur-sm rounded-2xl px-3.5 py-2.5 shadow-sm border border-surface-container-high/60">
+<div class="grid grid-cols-3 gap-2.5">
+<!-- Kenyang 80% (Orange/Amber) -->
+<div class="bg-surface-container-low/70 rounded-xl px-2 py-1.5 flex flex-col justify-center gap-1">
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-1 font-label-sm text-label-sm text-on-surface font-bold">
+<span class="material-symbols-outlined text-sm text-amber-500" style="font-variation-settings: 'FILL' 1;">grain</span>
+              Kenyang
+            </span>
+<span class="font-label-sm text-label-sm text-amber-600 font-extrabold" id="label-kenyang">80%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-variant/80 rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 rounded-full transition-all duration-500" id="bar-kenyang" style="width: 80%;"></div>
+</div>
+</div>
+<!-- Kandang 75% (Blue) -->
+<div class="bg-surface-container-low/70 rounded-xl px-2 py-1.5 flex flex-col justify-center gap-1">
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-1 font-label-sm text-label-sm text-on-surface font-bold">
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">cleaning_services</span>
+              Kandang
+            </span>
+<span class="font-label-sm text-label-sm text-tertiary font-extrabold" id="label-kebersihan">75%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-variant/80 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full transition-all duration-500" id="bar-kebersihan" style="width: 75%;"></div>
+</div>
+</div>
+<!-- Senang 90% (Green) -->
+<div class="bg-surface-container-low/70 rounded-xl px-2 py-1.5 flex flex-col justify-center gap-1">
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-1 font-label-sm text-label-sm text-on-surface font-bold">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+              Senang
+            </span>
+<span class="font-label-sm text-label-sm text-primary font-extrabold" id="label-bahagia">90%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-variant/80 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" id="bar-bahagia" style="width: 90%;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 3. Pet Scene Container (fills middle area with rounded-3xl container) -->
+<div class="relative flex-1 w-full min-h-[380px] max-h-[500px] rounded-3xl overflow-hidden shadow-sm border border-surface-container-high/50 flex flex-col items-center justify-center">
+<!-- Sunny Farmyard Scene Background -->
+<div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBUn-IfxcHFGwvec_jk55_2NLIJqdoKZ3X0TuTwaI0j3TPRNHvfSHLS0bOGm1bdXuH2dpQQzmOckPVng8Sgvj9dzHdM2lbf4wpPs4G_lhtXzBgRwNluNQnSJCTvbIGnuxED9KleFyp_iGLHP47YEEaUSujBbRkZiy2qI8MbDrNGRZStlcb1UumPw678NhMmE79I-rhJXFx4CfYrK-c2EdwsQRXbRVtxzHi_F2s03s3n')">
+<div class="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20"></div>
+</div>
+<!-- Pet Switcher: Left Edge Column (3 x 48px round avatar buttons) -->
+<div class="absolute left-3 top-4 flex flex-col gap-2.5 z-30">
+<!-- 1. Mini Sprout Icon (Plant) -->
+<button aria-label="Peliharaan Padi" class="w-12 h-12 rounded-full bg-surface-container-lowest/95 backdrop-blur-md shadow-md flex items-center justify-center text-primary active:scale-95 transition-transform border border-white/60">
+<svg class="w-6 h-6 fill-current text-primary" viewBox="0 0 24 24"><path d="M12 3v5c0 4.418-3.582 8-8 8v1a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1c0-7.18-5.82-13-8-14zm-1 7a5 5 0 0 1 5-5c1.1 0 2.2.4 3 1.1-1.3 3.6-4.6 6.3-8.6 6.8.3-.9.6-1.9.6-2.9z"></path></svg>
+</button>
+<!-- 2. Mini Koi Fish Icon (Fish) -->
+<button aria-label="Kolam Ikan" class="w-12 h-12 rounded-full bg-surface-container-lowest/95 backdrop-blur-md shadow-md flex items-center justify-center text-tertiary active:scale-95 transition-transform border border-white/60">
+<svg class="w-6 h-6 fill-current text-tertiary" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c2.31 0 4.43-.79 6.13-2.11L21 21l-1.89-2.87C20.21 16.43 21 14.31 21 12c0-5.52-4.48-10-9-10zm0 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm-1-7c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path></svg>
+</button>
+<!-- 3. Mini Yellow Chick Icon (Chicken - ACTIVE) -->
+<button aria-label="Ayam Aktif" class="w-12 h-12 rounded-full bg-secondary-container shadow-md flex items-center justify-center ring-4 ring-primary active:scale-95 transition-transform">
+<svg class="w-7 h-7" viewBox="0 0 32 32">
+<circle cx="16" cy="17" fill="#feda5a" r="11"></circle>
+<circle cx="12.5" cy="14" fill="#2b1704" r="1.8"></circle>
+<circle cx="19.5" cy="14" fill="#2b1704" r="1.8"></circle>
+<circle cx="13" cy="13.5" fill="#ffffff" r="0.6"></circle>
+<circle cx="20" cy="13.5" fill="#ffffff" r="0.6"></circle>
+<polygon fill="#ea580c" points="16,16 14,18.5 18,18.5"></polygon>
+<ellipse cx="16" cy="7.5" fill="#ef4444" rx="2.5" ry="3"></ellipse>
+</svg>
+</button>
+</div>
+<!-- "Tanya AI" Button: Top-Right Corner (Round 52px Emerald Green) -->
+<button aria-label="Tanya AI" class="absolute top-4 right-3 z-30 w-[52px] h-[52px] rounded-full bg-primary text-on-primary shadow-lg flex flex-col items-center justify-center active:scale-95 transition-transform border-2 border-white/60" onclick="tanyaDewiAi()">
+<span class="material-symbols-outlined text-xl leading-none">smart_toy</span>
+<span class="text-[9px] font-extrabold leading-tight mt-0.5 tracking-tighter">Tanya AI</span>
+</button>
+<!-- Speech Bubble: White Rounded Bubble with Shadow (Top-Center/Left, No Overlap with Head) -->
+<div class="absolute top-5 max-w-[210px] ml-10 z-20 pointer-events-none" id="speech-bubble">
+<div class="bg-surface-container-lowest/95 backdrop-blur-sm text-on-surface px-3.5 py-2 rounded-2xl shadow-lg border border-surface-container-high relative">
+<p class="font-body-sm text-[12px] font-bold text-center leading-snug" id="speech-text">Kukuruyuk! Aku mau makan jagung!</p>
+<!-- Speech Bubble Tail -->
+<div class="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-surface-container-lowest/95 absolute -bottom-2 left-1/2 -translate-x-1/2"></div>
+</div>
+</div>
+<!-- Centered Chick Pet: "Si Kuning" -->
+<div class="relative z-10 flex flex-col items-center justify-center mt-10 cursor-pointer" id="pet-avatar" onclick="petInteraction()">
+<div class="absolute -top-10 inset-x-0 flex justify-center pointer-events-none" id="heart-target"></div>
+<div class="w-48 h-48 relative flex items-center justify-center transition-transform duration-200 active:scale-95 hover:scale-105">
+<svg class="w-full h-full drop-shadow-xl select-none pointer-events-none" fill="none" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<!-- Comb -->
+<ellipse cx="100" cy="35" fill="#ef4444" rx="8" ry="12"></ellipse>
+<ellipse cx="93" cy="38" fill="#dc2626" rx="7" ry="10"></ellipse>
+<ellipse cx="107" cy="38" fill="#dc2626" rx="7" ry="10"></ellipse>
+<!-- Left Wing -->
+<ellipse cx="55" cy="115" fill="#f59e0b" rx="16" ry="26" transform="rotate(18 55 115)"></ellipse>
+<ellipse cx="58" cy="115" fill="#fcd34d" rx="14" ry="23" transform="rotate(18 58 115)"></ellipse>
+<!-- Right Wing -->
+<ellipse cx="145" cy="115" fill="#f59e0b" rx="16" ry="26" transform="rotate(-18 145 115)"></ellipse>
+<ellipse cx="142" cy="115" fill="#fcd34d" rx="14" ry="23" transform="rotate(-18 142 115)"></ellipse>
+<!-- Feet -->
+<path d="M82 165 L82 176 M74 176 L90 176" stroke="#ea580c" stroke-linecap="round" stroke-width="6"></path>
+<path d="M118 165 L118 176 M110 176 L126 176" stroke="#ea580c" stroke-linecap="round" stroke-width="6"></path>
+<!-- Body -->
+<ellipse cx="100" cy="110" fill="#fef08a" rx="54" ry="58" stroke="#eab308" stroke-width="4"></ellipse>
+<!-- Belly fluff highlight -->
+<ellipse cx="100" cy="122" fill="#fffbeb" rx="38" ry="36"></ellipse>
+<!-- Cheeks -->
+<circle cx="75" cy="115" fill="#fca5a5" opacity="0.6" r="9"></circle>
+<circle cx="125" cy="115" fill="#fca5a5" opacity="0.6" r="9"></circle>
+<!-- Left Eye -->
+<ellipse cx="82" cy="96" fill="#1c1917" rx="7" ry="9"></ellipse>
+<circle cx="80" cy="93" fill="#ffffff" r="3.5"></circle>
+<circle cx="84" cy="99" fill="#ffffff" r="1.5"></circle>
+<!-- Right Eye -->
+<ellipse cx="118" cy="96" fill="#1c1917" rx="7" ry="9"></ellipse>
+<circle cx="116" cy="93" fill="#ffffff" r="3.5"></circle>
+<circle cx="120" cy="99" fill="#ffffff" r="1.5"></circle>
+<!-- Beak -->
+<polygon fill="#f97316" points="100,100 89,112 111,112" stroke="#ea580c" stroke-linejoin="round" stroke-width="2"></polygon>
+<!-- Sparkle on head -->
+<path d="M126 62 L128 68 L134 70 L128 72 L126 78 L124 72 L118 70 L124 68 Z" fill="#facc15"></path>
+</svg>
+<div class="w-32 h-4 bg-black/25 rounded-full blur-[2px] absolute -bottom-1 -z-10"></div>
+</div>
+</div>
+<button aria-label="Ganti Jenis" class="absolute bottom-3 right-3 z-30 w-[52px] h-[52px] rounded-full bg-white shadow-md flex flex-col items-center justify-center active:scale-95 transition-transform border-[3px]" style="border-color: rgb(14, 133, 81);"><svg class="w-5 h-5" fill="none" stroke="#0E8551" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewBox="0 0 24 24"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 4v12m0 0l4-4m-4 4l-4-4"></path></svg><span class="text-[10px] font-bold leading-tight mt-0.5 tracking-tight" style="color: #0A5C36; font-family: 'Nunito Sans', sans-serif;">Ganti Jenis</span></button></div>
+<!-- 4. Action Buttons Row (Directly above Bottom Nav, Clean Spacing, No Subtitles) -->
+<div class="w-full mt-3 mb-1">
+<div class="grid grid-cols-3 gap-2.5">
+<!-- 1. Beri Makan (Amber/Yellow) -->
+<button class="h-14 bg-amber-500 hover:bg-amber-600 text-white rounded-2xl shadow-md active:translate-y-0.5 flex flex-col items-center justify-center gap-0.5 transition-all" onclick="feedPet()">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">grain</span>
+<span class="font-headline-sm text-xs font-bold leading-tight">Beri Makan</span>
+</button>
+<!-- 2. Beri Minum (Vibrant Blue) -->
+<button class="h-14 bg-blue-500 hover:bg-blue-600 text-white rounded-2xl shadow-md active:translate-y-0.5 flex flex-col items-center justify-center gap-0.5 transition-all" onclick="waterPet()">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+<span class="font-headline-sm text-xs font-bold leading-tight">Beri Minum</span>
+</button>
+<!-- 3. Bersihkan (Fresh Green) -->
+<button class="h-14 bg-primary hover:bg-primary/90 text-white rounded-2xl shadow-md active:translate-y-0.5 flex flex-col items-center justify-center gap-0.5 transition-all" onclick="cleanPet()">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">cleaning_services</span>
+<span class="font-headline-sm text-xs font-bold leading-tight">Bersihkan</span>
+</button>
+</div>
+</div>
+</main>
+<!-- 5. Bottom Navigation Bar -->
+<nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/90 backdrop-blur-xl border-t border-surface-container-high/60 shadow-lg">
+<div class="flex justify-around items-center h-16 px-gutter">
+<!-- Beranda (Active with soft green pill highlight) -->
+<a aria-current="page" class="flex flex-col items-center justify-center min-w-[64px] py-1 text-primary" data-path="beranda" href="#">
+<div class="px-5 py-1 rounded-full bg-primary/15 flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl text-primary" style="font-variation-settings: 'FILL' 1;">home</span>
+</div>
+<span class="font-label-md text-xs font-extrabold mt-0.5">Beranda</span>
+</a>
+<!-- Chat AI -->
+<a class="flex flex-col items-center justify-center min-w-[64px] py-1 text-on-surface-variant hover:text-primary transition-colors" data-path="chat-ai" href="#">
+<div class="px-5 py-1 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl text-on-surface-variant">chat_bubble</span>
+</div>
+<span class="font-label-md text-xs font-bold mt-0.5">Chat AI</span>
+</a>
+<!-- Pengaturan -->
+<a class="flex flex-col items-center justify-center min-w-[64px] py-1 text-on-surface-variant hover:text-primary transition-colors" data-path="pengaturan" href="#">
+<div class="px-5 py-1 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl text-on-surface-variant">settings</span>
+</div>
+<span class="font-label-md text-xs font-bold mt-0.5">Pengaturan</span>
+</a>
+</div>
+</nav>
+<!-- Interactive Logic -->
+<script>
+  let kenyang = 80;
+  let kebersihan = 75;
+  let bahagia = 90;
+
+  const speeches = [
+    "Kukuruyuk! Pagi yang cerah di peternakan! 🌾",
+    "Nyam nyam! Jagung manis ini lezat sekali! 🌽",
+    "Segar! Air bersih membuat buluku berkilau! 💧",
+    "Kandangku bersih berkilau, nyaman sekali! ✨",
+    "Petok petok! Terima kasih sudah menyayangiku! ❤️"
+  ];
+
+  function showFloatingSparkle(text, colorClass) {
+    const target = document.getElementById('heart-target');
+    if (!target) return;
+    const bubble = document.createElement('div');
+    bubble.className = `font-headline-sm text-sm font-extrabold transition-all duration-700 transform -translate-y-0 opacity-100 ${colorClass}`;
+    bubble.innerText = text;
+    target.appendChild(bubble);
+    setTimeout(() => {
+      bubble.style.transform = 'translateY(-24px) scale(1.2)';
+      bubble.style.opacity = '0';
+    }, 50);
+    setTimeout(() => bubble.remove(), 750);
+  }
+
+  function updateVitals() {
+    document.getElementById('label-kenyang').innerText = `${kenyang}%`;
+    document.getElementById('bar-kenyang').style.width = `${kenyang}%`;
+
+    document.getElementById('label-kebersihan').innerText = `${kebersihan}%`;
+    document.getElementById('bar-kebersihan').style.width = `${kebersihan}%`;
+
+    document.getElementById('label-bahagia').innerText = `${bahagia}%`;
+    document.getElementById('bar-bahagia').style.width = `${bahagia}%`;
+  }
+
+  function setSpeech(idx) {
+    const bubble = document.getElementById('speech-bubble');
+    const textEl = document.getElementById('speech-text');
+    bubble.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      textEl.innerText = speeches[idx];
+      bubble.style.transform = 'scale(1)';
+    }, 150);
+  }
+
+  function feedPet() {
+    kenyang = Math.min(100, kenyang + 10);
+    bahagia = Math.min(100, bahagia + 5);
+    updateVitals();
+    setSpeech(1);
+    showFloatingSparkle("🌽 Kenyang!", "text-amber-600");
+  }
+
+  function waterPet() {
+    bahagia = Math.min(100, bahagia + 8);
+    updateVitals();
+    setSpeech(2);
+    showFloatingSparkle("💧 Segar!", "text-blue-600");
+  }
+
+  function cleanPet() {
+    kebersihan = Math.min(100, kebersihan + 15);
+    bahagia = Math.min(100, bahagia + 5);
+    updateVitals();
+    setSpeech(3);
+    showFloatingSparkle("✨ Bersih!", "text-primary");
+  }
+
+  function petInteraction() {
+    bahagia = Math.min(100, bahagia + 5);
+    updateVitals();
+    setSpeech(4);
+    showFloatingSparkle("❤️ Senang!", "text-red-500");
+  }
+
+  function tanyaDewiAi() {
+    const bubble = document.getElementById('speech-bubble');
+    const textEl = document.getElementById('speech-text');
+    textEl.innerText = "Si Kuning siap dengar tips pakan dari Dewi Sri!";
+    bubble.classList.add('animate-bounce');
+    setTimeout(() => bubble.classList.remove('animate-bounce'), 800);
+  }
+</script>
+
+
+
+
+</body></html>
