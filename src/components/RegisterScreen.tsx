@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { playPop, playSparkle } from '../utils/audioEffects.ts';
 
 interface RegisterScreenProps {
   onRegisterSuccess: (name: string, email: string) => void;
@@ -20,6 +21,7 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    playSparkle();
     if (email && name) {
       onRegisterSuccess(name, email);
     }
@@ -30,9 +32,12 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
       {onBackToWelcome && (
         <div className="absolute top-4 left-4 z-20">
           <button
-            onClick={onBackToWelcome}
+            onClick={() => {
+              playPop();
+              onBackToWelcome();
+            }}
             aria-label="Kembali"
-            className="w-10 h-10 rounded-full bg-white/90 shadow-sm border border-[#ffeadb] flex items-center justify-center text-[#2b1704] active:scale-95 transition-all cursor-pointer"
+            className="w-10 h-10 rounded-full bg-white/90 shadow-sm border border-[#ffeadb] flex items-center justify-center text-[#2b1704] active:scale-95 transition-all cursor-pointer hover:bg-neutral-50"
           >
             <span className="material-symbols-outlined text-xl">arrow_back</span>
           </button>
@@ -42,9 +47,9 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
       {/* Main Content */}
       <div className="flex-1 flex flex-col items-center justify-center px-6 pt-10 pb-6 max-w-sm mx-auto w-full z-10">
         {/* Logo */}
-        <div className="relative mb-4 flex items-center justify-center">
-          <div className="absolute w-24 h-24 rounded-full bg-emerald-100/60 blur-xl"></div>
-          <div className="w-20 h-20 rounded-full bg-white shadow-[0_8px_24px_rgba(0,106,62,0.12)] border border-[#ffeadb] p-2 flex items-center justify-center relative">
+        <div className="relative mb-3 flex items-center justify-center">
+          <div className="absolute w-24 h-24 rounded-full bg-emerald-100/70 blur-xl"></div>
+          <div className="w-20 h-20 rounded-full bg-white shadow-[0_8px_24px_rgba(0,106,62,0.12)] border border-[#ffeadb] p-2 flex items-center justify-center relative animate-float-gentle">
             <img
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw-tYysOfVwxYMn-FcT5ti_uf5yiAsWGYB1PmvdVQ7Oxga_tnLEf_KCPvtY0xBBM_5qwNT89lpjMDNgoyE3GmJ8Aem39rn7BXuNac1JKK0HoVbOqiGaVAE6XWxcykIe3wCr757EZDUNpDj67VGd8HYzBP7E8ywqfVgZCtEGl4apV5G73jW6I2jedOjal2RFrZEgI8gunyVvWhbWIdwFzfAWc9KIYfJM1OmxKN_5sFA"
               alt="Dewi Sri"
@@ -55,16 +60,19 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
 
         {/* Title & Subtitle */}
         <h1 className="font-extrabold text-2xl text-[#2b1704] tracking-tight text-center">
-          Buat Akun Baru
+          Daftar Sobat Tani
         </h1>
-        <p className="text-xs text-[#3e4941] text-center mt-1 mb-5">
-          Daftar gratis dan mulai merawat peliharaanmu
+        <p className="text-xs text-[#3e4941] text-center mt-1 mb-4 font-medium">
+          Mulai merawat tanaman &amp; ternak virtualmu sekarang
         </p>
 
         {/* Google Register Button */}
         <button
-          onClick={() => onRegisterSuccess('Sobat Tani', 'sobat.tani@gmail.com')}
-          className="w-full h-11 rounded-full bg-white hover:bg-neutral-50 border border-[#ffeadb] shadow-sm flex items-center justify-center gap-2.5 text-xs font-bold text-[#2b1704] active:scale-[0.98] transition-all cursor-pointer"
+          onClick={() => {
+            playPop();
+            onRegisterSuccess('Sobat Tani', 'sobat.tani@gmail.com');
+          }}
+          className="w-full h-11 rounded-full bg-white hover:bg-neutral-50 border border-[#ffeadb] shadow-xs flex items-center justify-center gap-2.5 text-xs font-bold text-[#2b1704] active:scale-[0.98] transition-all cursor-pointer"
         >
           <svg className="w-4 h-4" viewBox="0 0 24 24">
             <path
@@ -84,13 +92,13 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
               d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
             />
           </svg>
-          <span>Daftar dengan Google</span>
+          <span>Daftar Cepat dengan Google</span>
         </button>
 
         {/* Divider "atau" */}
-        <div className="w-full flex items-center my-4">
+        <div className="w-full flex items-center my-3.5">
           <div className="flex-1 h-px bg-[#ffeadb]"></div>
-          <span className="px-3 text-xs text-[#6e7a70] font-medium">atau</span>
+          <span className="px-3 text-xs text-[#6e7a70] font-bold">atau</span>
           <div className="flex-1 h-px bg-[#ffeadb]"></div>
         </div>
 
@@ -98,15 +106,15 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
         <form onSubmit={handleSubmit} className="w-full flex flex-col gap-3">
           {/* Nama Panggilan */}
           <div className="flex flex-col gap-1 text-left">
-            <label className="text-xs font-bold text-[#2b1704]">Nama Panggilan</label>
-            <div className="h-11 bg-white rounded-2xl border border-[#ffeadb] px-3.5 flex items-center gap-2.5 focus-within:border-[#006a3e] transition-colors shadow-sm">
+            <label className="text-xs font-bold text-[#2b1704]">Nama Petani</label>
+            <div className="h-11 bg-white rounded-2xl border border-[#ffeadb] px-3.5 flex items-center gap-2.5 focus-within:border-[#006a3e] transition-colors shadow-2xs">
               <span className="material-symbols-outlined text-[#6e7a70] text-base">person</span>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Contoh: Sobat Tani"
-                className="w-full bg-transparent text-xs text-[#2b1704] outline-none placeholder:text-[#6e7a70]/50"
+                className="w-full bg-transparent text-xs font-bold text-[#2b1704] outline-none placeholder:text-[#6e7a70]/50"
                 required
               />
             </div>
@@ -115,14 +123,14 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
           {/* Email */}
           <div className="flex flex-col gap-1 text-left">
             <label className="text-xs font-bold text-[#2b1704]">Email</label>
-            <div className="h-11 bg-white rounded-2xl border border-[#ffeadb] px-3.5 flex items-center gap-2.5 focus-within:border-[#006a3e] transition-colors shadow-sm">
+            <div className="h-11 bg-white rounded-2xl border border-[#ffeadb] px-3.5 flex items-center gap-2.5 focus-within:border-[#006a3e] transition-colors shadow-2xs">
               <span className="material-symbols-outlined text-[#6e7a70] text-base">mail</span>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="nama@email.com"
-                className="w-full bg-transparent text-xs text-[#2b1704] outline-none placeholder:text-[#6e7a70]/50"
+                className="w-full bg-transparent text-xs font-bold text-[#2b1704] outline-none placeholder:text-[#6e7a70]/50"
                 required
               />
             </div>
@@ -131,14 +139,14 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
           {/* Kata Sandi */}
           <div className="flex flex-col gap-1 text-left">
             <label className="text-xs font-bold text-[#2b1704]">Kata Sandi</label>
-            <div className="h-11 bg-white rounded-2xl border border-[#ffeadb] px-3.5 flex items-center gap-2.5 focus-within:border-[#006a3e] transition-colors shadow-sm">
+            <div className="h-11 bg-white rounded-2xl border border-[#ffeadb] px-3.5 flex items-center gap-2.5 focus-within:border-[#006a3e] transition-colors shadow-2xs">
               <span className="material-symbols-outlined text-[#6e7a70] text-base">lock</span>
               <input
                 type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Masukkan kata sandi"
-                className="w-full bg-transparent text-xs text-[#2b1704] outline-none placeholder:text-[#6e7a70]/50"
+                placeholder="Minimal 8 karakter"
+                className="w-full bg-transparent text-xs font-bold text-[#2b1704] outline-none placeholder:text-[#6e7a70]/50"
                 required
               />
               <button
@@ -151,20 +159,19 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
                 </span>
               </button>
             </div>
-            <span className="text-[10px] text-[#6e7a70] pl-1">Minimal 8 karakter</span>
           </div>
 
           {/* Ulangi Kata Sandi */}
           <div className="flex flex-col gap-1 text-left">
             <label className="text-xs font-bold text-[#2b1704]">Ulangi Kata Sandi</label>
-            <div className="h-11 bg-white rounded-2xl border border-[#ffeadb] px-3.5 flex items-center gap-2.5 focus-within:border-[#006a3e] transition-colors shadow-sm">
+            <div className="h-11 bg-white rounded-2xl border border-[#ffeadb] px-3.5 flex items-center gap-2.5 focus-within:border-[#006a3e] transition-colors shadow-2xs">
               <span className="material-symbols-outlined text-[#6e7a70] text-base">lock</span>
               <input
                 type={showRepeatPassword ? 'text' : 'password'}
                 value={repeatPassword}
                 onChange={(e) => setRepeatPassword(e.target.value)}
                 placeholder="Ulangi kata sandi"
-                className="w-full bg-transparent text-xs text-[#2b1704] outline-none placeholder:text-[#6e7a70]/50"
+                className="w-full bg-transparent text-xs font-bold text-[#2b1704] outline-none placeholder:text-[#6e7a70]/50"
                 required
               />
               <button
@@ -182,9 +189,10 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
           {/* Daftar Button */}
           <button
             type="submit"
-            className="w-full h-12 mt-2 rounded-full bg-[#006a3e] hover:bg-[#0e8551] text-white font-extrabold text-sm shadow-[0_4px_12px_rgba(0,106,62,0.3)] active:scale-[0.98] transition-all cursor-pointer"
+            className="w-full h-12 mt-1 rounded-full bg-[#006a3e] hover:bg-[#0e8551] text-white font-extrabold text-sm shadow-[0_4px_0_0_#004a29] active:translate-y-1 active:shadow-none transition-all cursor-pointer flex items-center justify-center gap-2"
           >
-            Daftar
+            <span>Daftar Akun Petani</span>
+            <span className="material-symbols-outlined text-lg">check_circle</span>
           </button>
         </form>
 
@@ -193,7 +201,10 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
           Sudah punya akun?{' '}
           <button
             type="button"
-            onClick={onNavigateLogin}
+            onClick={() => {
+              playPop();
+              onNavigateLogin();
+            }}
             className="font-extrabold text-[#006a3e] hover:underline cursor-pointer"
           >
             Masuk
@@ -201,19 +212,11 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
         </p>
       </div>
 
-      {/* Decorative Wavy Ground Bottom Banners */}
-      <div className="w-full relative h-20 pointer-events-none mt-auto">
+      {/* Decorative Wavy Ground Bottom */}
+      <div className="w-full relative h-16 pointer-events-none mt-auto">
         <svg className="w-full h-full" viewBox="0 0 390 80" preserveAspectRatio="none" fill="none">
-          <path
-            d="M0 45 Q90 15 195 40 T390 30 V80 H0 Z"
-            fill="#fef08a"
-            opacity="0.55"
-          />
-          <path
-            d="M0 55 Q100 35 200 50 T390 42 V80 H0 Z"
-            fill="#a7f3d0"
-            opacity="0.8"
-          />
+          <path d="M0 45 Q90 15 195 40 T390 30 V80 H0 Z" fill="#fef08a" opacity="0.55" />
+          <path d="M0 55 Q100 35 200 50 T390 42 V80 H0 Z" fill="#a7f3d0" opacity="0.8" />
         </svg>
       </div>
     </div>

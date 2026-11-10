@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { UserProfile, FarmerRank } from '../types/index.ts';
+import { playSparkle, playPop } from '../utils/audioEffects.ts';
 
 interface PengaturanScreenProps {
   userProfile: UserProfile;
@@ -42,17 +43,20 @@ export const PengaturanScreen: React.FC<PengaturanScreenProps> = ({
     const next = !soundOn;
     setSoundOn(next);
     onUpdateProfile({ soundEnabled: next });
+    if (next) playSparkle(true);
     showToast(next ? 'Suara efek diaktifkan 🎵' : 'Suara dinonaktifkan 🔇');
   };
 
   const handleToggleReminder = () => {
+    playPop(soundOn);
     const next = !reminderOn;
     setReminderOn(next);
     onUpdateProfile({ reminderEnabled: next });
-    showToast(next ? 'Pengingat harian aktif ⏰' : 'Pengingat dimatikan');
+    showToast(next ? 'Pengingat harian aktif ⏰ (07.00 WIB)' : 'Pengingat dinonaktifkan');
   };
 
   const handleTextSizeChange = (size: 'small' | 'medium' | 'large') => {
+    playPop(soundOn);
     setTextSize(size);
     onUpdateProfile({ textSize: size });
     showToast(`Ukuran teks: ${size === 'small' ? 'Kecil' : size === 'medium' ? 'Sedang' : 'Besar'}`);

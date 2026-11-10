@@ -3,8 +3,9 @@ import { PetState, PetType, ChatConversation } from '../types/index.ts';
 export const INITIAL_PETS: Record<PetType, PetState> = {
   tunas: {
     type: 'tunas',
+    variety: 'padi',
     name: 'Si Tunas',
-    species: 'Padi Berkah',
+    species: 'Padi Berkah Sawah',
     stat1Name: 'Nutrisi',
     stat1: 30,
     stat2Name: 'Air',
@@ -16,8 +17,9 @@ export const INITIAL_PETS: Record<PetType, PetState> = {
   },
   koki: {
     type: 'koki',
+    variety: 'koi',
     name: 'Si Koki',
-    species: 'Ikan Mas Koki Sawah',
+    species: 'Ikan Mas Koi Cantik',
     stat1Name: 'Pakan',
     stat1: 15,
     stat2Name: 'Air',
@@ -29,6 +31,7 @@ export const INITIAL_PETS: Record<PetType, PetState> = {
   },
   kuning: {
     type: 'kuning',
+    variety: 'kampung',
     name: 'Si Kuning',
     species: 'Anak Ayam Kampung',
     stat1Name: 'Kenyang',
@@ -66,24 +69,40 @@ export function performCareAction(
   let feedbackText = '';
 
   if (pet.type === 'tunas') {
+    const plantLabel = pet.variety === 'berry' ? 'berry' : pet.variety === 'pisang' ? 'pisang' : pet.variety === 'sorgum' ? 'sorgum' : 'padi';
     if (actionSlot === 'action1') {
       // Siram
       updated.stat2 = Math.min(100, updated.stat2 + 30);
       updated.stat3 = Math.min(100, updated.stat3 + 15);
-      feedbackText = '💦 Segar sekali! Air sawah sejuk meresap ke akar!';
-      updated.speech = 'Segarnya! Terima kasih sudah menyiramku, Kak! 🌱';
+      feedbackText = `💦 Segar sekali! Air sejuk meresap ke akar tanaman ${plantLabel}!`;
+      updated.speech =
+        pet.variety === 'berry'
+          ? 'Segarnya! Buah berryku makin montok dan manis! 🍓'
+          : pet.variety === 'pisang'
+          ? 'Segarnya! Daun pisangku makin mekar dan hijau! 🍌'
+          : pet.variety === 'sorgum'
+          ? 'Segarnya! Tanaman sorgumku makin subur! 🌾'
+          : 'Segarnya! Terima kasih sudah menyiramku, Kak! 🌱';
     } else if (actionSlot === 'action2') {
       // Pupuk
       updated.stat1 = Math.min(100, updated.stat1 + 35);
       updated.stat3 = Math.min(100, updated.stat3 + 20);
-      feedbackText = '🌿 Nutrisi organik diserap! Daun tumbuh semakin hijau!';
-      updated.speech = 'Nyam! Pupuk organiknya bikin aku makin subur! ✨';
+      feedbackText = `🌿 Nutrisi organik diserap! Tanaman ${plantLabel} makin subur!`;
+      updated.speech =
+        pet.variety === 'berry'
+          ? 'Nyam! Pupuk organiknya bikin buah berry makin lebat! ✨'
+          : pet.variety === 'pisang'
+          ? 'Nyam! Pupuk bikin pohon pisangku kokoh! 🍌'
+          : 'Nyam! Pupuk organiknya bikin aku makin subur! ✨';
     } else {
       // Sinar Matahari
       updated.stat3 = Math.min(100, updated.stat3 + 30);
       updated.stat1 = Math.min(100, updated.stat1 + 10);
-      feedbackText = '☀️ Hangatnya mentari pagi mengaktifkan fotosintesis!';
-      updated.speech = 'Hangatnya sinar surya pagi di sawah! Senang sekali! 🌞';
+      feedbackText = `☀️ Hangatnya mentari pagi menyinari tanaman ${plantLabel}!`;
+      updated.speech =
+        pet.variety === 'berry'
+          ? 'Hangatnya mentari mematangkan buah berry dengan sempurna! 🌞'
+          : 'Hangatnya sinar surya pagi di sawah! Senang sekali! 🌞';
     }
   } else if (pet.type === 'koki') {
     if (actionSlot === 'action1') {

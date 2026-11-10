@@ -4,7 +4,7 @@ import { PetType, PetVariety, PlantVariety, FishVariety, ChickenVariety } from '
 interface PetVarietyModalProps {
   petType: PetType;
   currentVariety: PetVariety;
-  onSelectVariety: (variety: PetVariety, displayName: string) => void;
+  onSelectVariety: (variety: PetVariety, displayName: string, shouldClose?: boolean) => void;
   onClose: () => void;
 }
 
@@ -13,6 +13,7 @@ interface VarietyOption {
   name: string;
   desc: string;
   badge?: string;
+  harvest?: string;
   svg: React.ReactNode;
 }
 
@@ -30,6 +31,8 @@ export const PetVarietyModal: React.FC<PetVarietyModalProps> = ({
       id: 'padi' as PlantVariety,
       name: 'Padi',
       desc: 'Tanaman pokok sawah',
+      badge: 'Pokok Nusantara',
+      harvest: '🌾 65 Hari',
       svg: (
         <svg className="w-16 h-16 drop-shadow-sm" viewBox="0 0 100 100" fill="none">
           <ellipse cx="50" cy="92" fill="#2b1704" opacity="0.15" rx="24" ry="4" />
@@ -55,6 +58,8 @@ export const PetVarietyModal: React.FC<PetVarietyModalProps> = ({
       id: 'pisang' as PlantVariety,
       name: 'Pisang',
       desc: 'Buah manis tropis',
+      badge: 'Tropis Segar',
+      harvest: '🍌 8 Bulan',
       svg: (
         <svg className="w-16 h-16 drop-shadow-sm" viewBox="0 0 100 100" fill="none">
           <ellipse cx="50" cy="92" fill="#2b1704" opacity="0.15" rx="24" ry="4" />
@@ -77,6 +82,8 @@ export const PetVarietyModal: React.FC<PetVarietyModalProps> = ({
       id: 'sorgum' as PlantVariety,
       name: 'Sorgum',
       desc: 'Tahan kering, bergizi',
+      badge: 'Tahan Kemarau',
+      harvest: '🌾 90 Hari',
       svg: (
         <svg className="w-16 h-16 drop-shadow-sm" viewBox="0 0 100 100" fill="none">
           <ellipse cx="50" cy="92" fill="#2b1704" opacity="0.15" rx="24" ry="4" />
@@ -103,6 +110,8 @@ export const PetVarietyModal: React.FC<PetVarietyModalProps> = ({
       id: 'berry' as PlantVariety,
       name: 'Berry',
       desc: 'Buah kecil segar',
+      badge: 'Superfood Manis',
+      harvest: '🍓 35 Hari',
       svg: (
         <svg className="w-16 h-16 drop-shadow-sm" viewBox="0 0 100 100" fill="none">
           <ellipse cx="50" cy="92" fill="#2b1704" opacity="0.15" rx="24" ry="4" />
@@ -132,6 +141,8 @@ export const PetVarietyModal: React.FC<PetVarietyModalProps> = ({
       id: 'koi' as FishVariety,
       name: 'Koi',
       desc: 'Cantik & jinak',
+      badge: 'Ikan Hias',
+      harvest: '✨ Estetis & Jinak',
       svg: (
         <svg className="w-20 h-16 drop-shadow-sm" viewBox="0 0 120 80" fill="none">
           <ellipse cx="90" cy="42" fill="#f97316" rx="20" ry="12" />
@@ -150,6 +161,8 @@ export const PetVarietyModal: React.FC<PetVarietyModalProps> = ({
       id: 'lele' as FishVariety,
       name: 'Lele',
       desc: 'Mudah dipelihara',
+      badge: 'Tangguh',
+      harvest: '🐟 60 Hari',
       svg: (
         <svg className="w-20 h-16 drop-shadow-sm" viewBox="0 0 120 80" fill="none">
           <ellipse cx="88" cy="42" fill="#44403c" rx="20" ry="10" />
@@ -171,6 +184,7 @@ export const PetVarietyModal: React.FC<PetVarietyModalProps> = ({
       name: 'Nila',
       desc: 'Cepat besar & tangguh',
       badge: 'Sahabat Kolam',
+      harvest: '🐟 90 Hari',
       svg: (
         <svg className="w-20 h-16 drop-shadow-sm" viewBox="0 0 120 80" fill="none">
           <ellipse cx="88" cy="42" fill="#0d9488" rx="20" ry="12" />
@@ -196,6 +210,8 @@ export const PetVarietyModal: React.FC<PetVarietyModalProps> = ({
       id: 'kampung' as ChickenVariety,
       name: 'Ayam Kampung',
       desc: 'Tangguh dan lincah',
+      badge: 'Daging Lezat',
+      harvest: '🥚 Telur Alami',
       svg: (
         <svg className="w-16 h-16 drop-shadow-sm" viewBox="0 0 100 100" fill="none">
           {/* Comb */}
@@ -224,6 +240,8 @@ export const PetVarietyModal: React.FC<PetVarietyModalProps> = ({
       id: 'petelur' as ChickenVariety,
       name: 'Ayam Petelur',
       desc: 'Penghasil telur',
+      badge: 'Produksi Tinggi',
+      harvest: '🥚 Harian',
       svg: (
         <svg className="w-16 h-16 drop-shadow-sm" viewBox="0 0 100 100" fill="none">
           {/* Red comb */}
@@ -253,6 +271,7 @@ export const PetVarietyModal: React.FC<PetVarietyModalProps> = ({
       name: 'Ayam Pedaging',
       desc: 'Cepat besar',
       badge: 'Pilihan Peternak',
+      harvest: '🍗 35 Hari',
       svg: (
         <svg className="w-20 h-16 drop-shadow-sm" viewBox="0 0 100 100" fill="none">
           {/* Chubby Broiler Hen */}
@@ -296,10 +315,18 @@ export const PetVarietyModal: React.FC<PetVarietyModalProps> = ({
     },
   }[petType];
 
+  const handleCardClick = (opt: VarietyOption) => {
+    setSelected(opt.id);
+    // Immediately apply selection to default view so it changes seamlessly
+    onSelectVariety(opt.id, opt.name, false);
+  };
+
   const handleConfirm = () => {
     const selectedItem = modalConfig.options.find((opt) => opt.id === selected);
     if (selectedItem) {
-      onSelectVariety(selected, selectedItem.name);
+      onSelectVariety(selected, selectedItem.name, true);
+    } else {
+      onClose();
     }
   };
 
@@ -334,7 +361,7 @@ export const PetVarietyModal: React.FC<PetVarietyModalProps> = ({
                 return (
                   <div
                     key={opt.id}
-                    onClick={() => setSelected(opt.id)}
+                    onClick={() => handleCardClick(opt)}
                     className={`relative rounded-2xl p-3 flex flex-col items-center justify-center text-center cursor-pointer transition-all ${
                       isSelected
                         ? 'bg-[#e8f5e9] border-2 border-[#006a3e] shadow-[0_4px_12px_rgba(0,106,62,0.12)]'
@@ -350,6 +377,11 @@ export const PetVarietyModal: React.FC<PetVarietyModalProps> = ({
                     <div className="my-1">{opt.svg}</div>
                     <h3 className="font-extrabold text-sm text-[#2b1704] mt-1">{opt.name}</h3>
                     <p className="text-[11px] text-[#3e4941] mt-0.5 leading-tight">{opt.desc}</p>
+                    {opt.harvest && (
+                      <span className="text-[9px] font-extrabold text-[#006a3e] bg-[#e8f5e9] border border-emerald-200 px-2 py-0.5 rounded-full mt-1.5 shadow-2xs">
+                        {opt.harvest}
+                      </span>
+                    )}
                   </div>
                 );
               })}
@@ -363,7 +395,7 @@ export const PetVarietyModal: React.FC<PetVarietyModalProps> = ({
                   return (
                     <div
                       key={opt.id}
-                      onClick={() => setSelected(opt.id)}
+                      onClick={() => handleCardClick(opt)}
                       className={`relative rounded-2xl p-3.5 flex flex-col items-center justify-center text-center cursor-pointer transition-all ${
                         isSelected
                           ? 'bg-[#e8f5e9] border-2 border-[#006a3e] shadow-[0_4px_12px_rgba(0,106,62,0.12)]'
@@ -378,6 +410,11 @@ export const PetVarietyModal: React.FC<PetVarietyModalProps> = ({
                       <div className="my-1">{opt.svg}</div>
                       <h3 className="font-extrabold text-sm text-[#2b1704] mt-1">{opt.name}</h3>
                       <p className="text-[11px] text-[#3e4941] mt-0.5 leading-tight">{opt.desc}</p>
+                      {opt.harvest && (
+                        <span className="text-[9px] font-extrabold text-[#006a3e] bg-[#e8f5e9] border border-emerald-200 px-2 py-0.5 rounded-full mt-1.5 shadow-2xs">
+                          {opt.harvest}
+                        </span>
+                      )}
                     </div>
                   );
                 })}
@@ -386,7 +423,7 @@ export const PetVarietyModal: React.FC<PetVarietyModalProps> = ({
               {/* 3rd Option Full Width Card */}
               {modalConfig.options[2] && (
                 <div
-                  onClick={() => setSelected(modalConfig.options[2].id)}
+                  onClick={() => handleCardClick(modalConfig.options[2])}
                   className={`relative rounded-2xl p-4 flex items-center gap-4 cursor-pointer transition-all ${
                     selected === modalConfig.options[2].id
                       ? 'bg-[#e8f5e9] border-2 border-[#006a3e] shadow-[0_4px_12px_rgba(0,106,62,0.12)]'
@@ -402,12 +439,19 @@ export const PetVarietyModal: React.FC<PetVarietyModalProps> = ({
                   <div className="flex-1 pr-6">
                     <h3 className="font-extrabold text-base text-[#2b1704]">{modalConfig.options[2].name}</h3>
                     <p className="text-xs text-[#3e4941] mt-0.5">{modalConfig.options[2].desc}</p>
-                    {modalConfig.options[2].badge && (
-                      <div className="inline-flex items-center gap-1 mt-1.5 px-2 py-0.5 rounded-full bg-[#e8f5e9] border border-[#a3e635]/40 text-[#006a3e] text-[10px] font-bold">
-                        <span className="material-symbols-outlined text-xs">eco</span>
-                        <span>{modalConfig.options[2].badge}</span>
-                      </div>
-                    )}
+                    <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
+                      {modalConfig.options[2].badge && (
+                        <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#e8f5e9] border border-[#a3e635]/40 text-[#006a3e] text-[10px] font-bold">
+                          <span className="material-symbols-outlined text-xs">eco</span>
+                          <span>{modalConfig.options[2].badge}</span>
+                        </div>
+                      )}
+                      {modalConfig.options[2].harvest && (
+                        <span className="text-[9px] font-extrabold text-[#006a3e] bg-[#e8f5e9] border border-emerald-200 px-2 py-0.5 rounded-full shadow-2xs">
+                          {modalConfig.options[2].harvest}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
               )}

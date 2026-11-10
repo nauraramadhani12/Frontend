@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ActiveScreen, PetType, PetState, UserProfile, PetVariety } from './types/index.ts';
 import { INITIAL_PETS, performCareAction, getRankInfo } from './utils/petRules.ts';
+import { playLevelUpFanfare, playPop } from './utils/audioEffects.ts';
 import { WelcomeScreen } from './components/WelcomeScreen.tsx';
 import { LoginScreen } from './components/LoginScreen.tsx';
 import { RegisterScreen } from './components/RegisterScreen.tsx';
@@ -60,6 +61,11 @@ export default function App() {
     };
   });
 
+  const [streakDays, setStreakDays] = useState<number>(() => {
+    const saved = localStorage.getItem('dewi_sri_streak');
+    return saved ? parseInt(saved, 10) : 5;
+  });
+
   const [levelUpAlert, setLevelUpAlert] = useState<string | null>(null);
 
   // Sync to localStorage
@@ -70,6 +76,10 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('dewi_sri_care_count', totalCareCount.toString());
   }, [totalCareCount]);
+
+  useEffect(() => {
+    localStorage.setItem('dewi_sri_streak', streakDays.toString());
+  }, [streakDays]);
 
   useEffect(() => {
     localStorage.setItem('dewi_sri_profile', JSON.stringify(userProfile));
@@ -87,6 +97,13 @@ export default function App() {
   const currentPet = pets[activePetType];
   const rankInfo = getRankInfo(totalCareCount);
 
+  const handleToggleSound = () => {
+    setUserProfile((prev) => ({
+      ...prev,
+      soundEnabled: !prev.soundEnabled,
+    }));
+  };
+
   const handleCareAction = (slot: 'action1' | 'action2' | 'action3') => {
     const { updatedPet } = performCareAction(currentPet, slot);
     setPets((prev) => ({
@@ -100,20 +117,53 @@ export default function App() {
     const oldRank = getRankInfo(totalCareCount);
     const newRank = getRankInfo(nextCount);
     if (newRank.level > oldRank.level) {
+      playLevelUpFanfare(userProfile.soundEnabled);
       setLevelUpAlert(`🎉 SELAMAT! Peringkatmu naik ke ${newRank.title} (Level ${newRank.level})!`);
       setTimeout(() => setLevelUpAlert(null), 3500);
     }
   };
 
   const handleSelectVariety = (variety: PetVariety, displayName: string) => {
-    setPets((prev) => ({
-      ...prev,
-      [activePetType]: {
-        ...prev[activePetType],
+    const speciesMap: Record<PetVariety, string> = {
+      padi: 'Padi Berkah Sawah',
+      pisang: 'Pohon Pisang Tropis',
+      sorgum: 'Tanaman Sorgum Tangguh',
+      berry: 'Tanaman Berry Segar',
+      koi: 'Ikan Mas Koi Cantik',
+      lele: 'Ikan Lele Tangguh',
+      nila: 'Ikan Nila Sahabat Kolam',
+      kampung: 'Anak Ayam Kampung',
+      petelur: 'Ayam Petelur Unggul',
+      pedaging: 'Ayam Pedaging Sehat',
+    };
+
+    const speechMap: Record<PetVariety, string> = {
+      padi: 'Segarnya sawah! Tolong rawat bulir padiku ya, Kak! 🌱',
+      pisang: 'Wah, daun pisangku makin lebar dan subur! 🍌',
+      sorgum: 'Bulir sorgumku siap tumbuh tangguh dan bergizi! 🌾',
+      berry: 'Buah berryku mulai ranum dan manis! Rawat aku ya! 🍓',
+      koi: 'Blub blub... air kolamnya segar sekali! 🐟',
+      lele: 'Kumis sungutku bergoyang lincah, kolamnya mantap! 🐡',
+      nila: 'Sisik garisku berkilau di air jernih kolam! 🐠',
+      kampung: 'Kukuruyuk! Aku anak ayam yang lincah dan sehat! 🐣',
+      petelur: 'Petok petok! Kandang nyaman bikin bertelur rajin! 🐔',
+      pedaging: 'Nyam nyam! Aku tumbuh sehat, montok, dan gembira! 🐥',
+    };
+
+    setPets((prev) => {
+      const current = prev[activePetType];
+      const updatedPet: PetState = {
+        ...current,
         variety,
         name: displayName.startsWith('Ayam') ? displayName : `Si ${displayName}`,
-      },
-    }));
+        species: speciesMap[variety] || current.species,
+        speech: speechMap[variety] || current.speech,
+      };
+      return {
+        ...prev,
+        [activePetType]: updatedPet,
+      };
+    });
   };
 
   const handleLogin = (email: string) => {
@@ -190,12 +240,33 @@ export default function App() {
         {activeScreen === 'beranda' && (
           <BerandaScreen
             currentPet={currentPet}
-            onSelectPetType={setActivePetType}
+            allPets={pets}
+            streakDays={streakDays}
+            soundEnabled={userProfile.soundEnabled}
+            onToggleSound={handleToggleSound}
+            onSelectPetType={(type) => {
+              playPop(userProfile.soundEnabled);
+              setActivePetType(type);
+            }}
             onCyclePet={handleCyclePet}
             onSelectVariety={handleSelectVariety}
             onCareAction={handleCareAction}
-            onOpenChatAI={() => setActiveScreen('chat_ai')}
-            onOpenProfile={() => setActiveScreen('pengaturan')}
+            onOpenChatAI={() => {
+              playPop(userProfile.soundEnabled);
+              setActiveScreen('chat_ai');
+            }}
+            onOpenProfile={() => {
+              playPop(userProfile.soundEnabled);
+              setActiveScreen('pengaturan');
+            }}
+            onOpenRankPetani={() => {
+              playPop(userProfile.soundEnabled);
+              setActiveScreen('rank_petani');
+            }}
+            onOpenHistory={() => {
+              playPop(userProfile.soundEnabled);
+              setActiveScreen('chat_history');
+            }}
           />
         )}
 
@@ -258,7 +329,10 @@ export default function App() {
         {!isAuthScreen && (
           <BottomNavBar
             currentScreen={activeScreen}
-            onNavigate={(screen) => setActiveScreen(screen)}
+            onNavigate={(screen) => {
+              playPop(userProfile.soundEnabled);
+              setActiveScreen(screen);
+            }}
           />
         )}
       </div>

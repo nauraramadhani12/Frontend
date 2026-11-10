@@ -1,40 +1,45 @@
 import React, { useState } from 'react';
+import { playPop, playSparkle } from '../utils/audioEffects.ts';
 
 interface ForgotPasswordScreenProps {
   onBackToLogin: () => void;
 }
 
 export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({ onBackToLogin }) => {
-  const [email, setEmail] = useState('nama@email.com');
+  const [email, setEmail] = useState('sobat.tani@gmail.com');
   const [sent, setSent] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    playSparkle();
     setSent(true);
   };
 
   return (
     <div className="flex-1 flex flex-col justify-between min-h-screen bg-[#fff8f5] select-none relative overflow-x-hidden">
       {/* Header */}
-      <header className="h-14 px-4 flex items-center justify-between border-b border-[#ffeadb] bg-white/70 backdrop-blur-md">
+      <header className="h-16 px-4 flex items-center justify-between border-b border-[#ffeadb] bg-white/70 backdrop-blur-md">
         <button
-          onClick={onBackToLogin}
+          onClick={() => {
+            playPop();
+            onBackToLogin();
+          }}
           aria-label="Kembali ke Masuk"
-          className="w-10 h-10 rounded-full bg-[#fff1e8] flex items-center justify-center text-[#2b1704] active:scale-95 transition-all cursor-pointer"
+          className="w-10 h-10 rounded-full bg-[#fff1e8] flex items-center justify-center text-[#2b1704] active:scale-95 transition-all cursor-pointer hover:bg-[#ffe3ce]"
         >
           <span className="material-symbols-outlined text-xl">arrow_back</span>
         </button>
-        <h1 className="font-extrabold text-base text-[#2b1704]">Lupa Kata Sandi</h1>
+        <h1 className="font-extrabold text-base text-[#2b1704]">Buka Kunci Lumbung</h1>
         <div className="w-10"></div>
       </header>
 
       {/* Main Body */}
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-8 max-w-sm mx-auto w-full z-10">
-        {/* Padlock Mascot Illustration with Leaf & Stars (screen_6a044f1b) */}
-        <div className="relative mb-6 flex items-center justify-center">
-          <div className="w-28 h-28 rounded-full bg-[#ffeadb]/60 flex items-center justify-center p-2 relative">
+        {/* Padlock Mascot Illustration with Leaf & Stars */}
+        <div className="relative mb-5 flex items-center justify-center">
+          <div className="w-28 h-28 rounded-full bg-[#ffeadb]/80 flex items-center justify-center p-2 relative animate-float-gentle shadow-xs">
             {/* Sparkle star */}
-            <div className="absolute right-0 bottom-3 text-amber-400 text-lg">✦</div>
+            <div className="absolute right-1 bottom-2 text-amber-400 text-lg animate-pulse">✦</div>
             <svg className="w-20 h-20 drop-shadow-md" viewBox="0 0 100 100" fill="none">
               {/* Shackle */}
               <path
@@ -60,10 +65,10 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({ onBa
 
         {/* Headings */}
         <h2 className="font-extrabold text-xl text-[#2b1704] text-center tracking-tight">
-          Kunci Lumbung Terkunci?
+          Lupa Kata Sandi?
         </h2>
-        <p className="text-xs text-[#3e4941] text-center mt-2 mb-6 leading-relaxed max-w-[280px]">
-          Masukkan email akunmu, kami kirim tautan untuk mengatur ulang kata sandi
+        <p className="text-xs text-[#3e4941] text-center mt-2 mb-6 leading-relaxed max-w-[280px] font-medium">
+          Masukkan email akun kebunmu, kami akan mengirimkan tautan pemulihan kata sandi
         </p>
 
         {/* Card Form */}
@@ -80,29 +85,30 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({ onBa
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="nama@email.com"
-                  className="w-full bg-transparent text-xs text-[#2b1704] outline-none"
+                  className="w-full bg-transparent text-xs font-bold text-[#2b1704] outline-none"
                   required
                 />
               </div>
               <div className="flex items-center gap-1 mt-1 text-[11px] text-[#6e7a70]">
                 <span className="material-symbols-outlined text-xs">info</span>
-                <span>Pastikan email aktif dan terdaftar di kebunmu.</span>
+                <span>Pastikan email terdaftar di kebun virtualmu.</span>
               </div>
             </div>
 
             {sent ? (
-              <div className="p-3 bg-emerald-50 rounded-2xl border border-emerald-200 text-center">
-                <p className="text-xs font-bold text-[#006a3e]">
+              <div className="p-3 bg-emerald-50 rounded-2xl border border-emerald-200 text-center animate-pop-in">
+                <p className="text-xs font-extrabold text-[#006a3e]">
                   ✓ Tautan pemulihan telah dikirim ke {email}!
                 </p>
+                <p className="text-[11px] text-[#6e7a70] mt-0.5">Silakan periksa kotak masuk atau spam.</p>
               </div>
             ) : (
               <button
                 type="submit"
-                className="w-full h-12 mt-2 rounded-2xl bg-[#006a3e] hover:bg-[#0e8551] text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-[0_4px_12px_rgba(0,106,62,0.3)] active:scale-[0.98] transition-all cursor-pointer"
+                className="w-full h-12 mt-1 rounded-2xl bg-[#006a3e] hover:bg-[#0e8551] text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-[0_4px_0_0_#004a29] active:translate-y-1 active:shadow-none transition-all cursor-pointer"
               >
                 <span className="material-symbols-outlined text-base">send</span>
-                <span>Kirim Tautan</span>
+                <span>Kirim Tautan Pemulihan</span>
               </button>
             )}
           </form>
@@ -110,17 +116,20 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({ onBa
 
         {/* Back Link */}
         <button
-          onClick={onBackToLogin}
+          onClick={() => {
+            playPop();
+            onBackToLogin();
+          }}
           className="mt-6 flex items-center gap-1 text-xs font-extrabold text-[#715c00] hover:text-[#2b1704] cursor-pointer"
         >
           <span className="material-symbols-outlined text-sm">arrow_back</span>
-          <span>Kembali ke Masuk</span>
+          <span>Kembali ke Halaman Masuk</span>
         </button>
       </div>
 
       {/* Decorative Wavy Ground Bottom */}
-      <div className="w-full h-16 pointer-events-none mt-auto flex items-end">
-        <div className="w-full h-10 bg-[#ffe3ce]/70 border-t border-[#fad3b3] flex items-center justify-between px-6 opacity-70">
+      <div className="w-full h-14 pointer-events-none mt-auto flex items-end">
+        <div className="w-full h-8 bg-[#ffe3ce]/70 border-t border-[#fad3b3] flex items-center justify-between px-6 opacity-70">
           <span className="material-symbols-outlined text-emerald-700 text-sm">grass</span>
           <span className="material-symbols-outlined text-amber-700 text-sm">local_florist</span>
         </div>

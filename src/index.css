@@ -10,6 +10,8 @@
     padding: 0;
     overscroll-behavior-y: none;
     font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #fff8f5;
+    color: #2b1704;
   }
 
   html[data-text-size="small"] {
@@ -52,4 +54,158 @@
 * {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Creative Micro-Animations */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(2deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateY(8px);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.04) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes sunRays {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes particleRise {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(0.8) rotate(0deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateY(-35px) scale(1.15) rotate(15deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-70px) scale(0.9) rotate(-10deg);
+  }
+}
+
+@keyframes scanLaser {
+  0% {
+    top: 5%;
+    opacity: 0.8;
+  }
+  50% {
+    top: 85%;
+    opacity: 1;
+  }
+  100% {
+    top: 5%;
+    opacity: 0.8;
+  }
+}
+
+@keyframes audioBarWave {
+  0%, 100% {
+    height: 6px;
+  }
+  50% {
+    height: 28px;
+  }
+}
+
+.animate-particle-rise {
+  animation: particleRise 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.animate-scan-laser {
+  animation: scanLaser 2.2s ease-in-out infinite;
+}
+
+.animate-float-gentle {
+  animation: floatGentle 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.animate-pop-in {
+  animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animate-sun-spin {
+  animation: sunRays 25s linear infinite;
+}
+
+.shimmer-badge {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s infinite;
+}
+
+/* Tactile 3D Clay Extrusion Helper */
+.clay-button-green {
+  background-color: #0E8551;
+  box-shadow: 0 5px 0 0 #00522f, 0 8px 16px rgba(0, 82, 47, 0.25);
+  transition: all 0.15s ease-out;
+}
+.clay-button-green:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 0 #00522f, 0 4px 8px rgba(0, 82, 47, 0.2);
+}
+
+.clay-button-blue {
+  background-color: #0B74C4;
+  box-shadow: 0 5px 0 0 #085591, 0 8px 16px rgba(8, 85, 145, 0.25);
+  transition: all 0.15s ease-out;
+}
+.clay-button-blue:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 0 #085591, 0 4px 8px rgba(8, 85, 145, 0.2);
+}
+
+.clay-button-gold {
+  background-color: #FFD84D;
+  box-shadow: 0 5px 0 0 #C49800, 0 8px 16px rgba(196, 152, 0, 0.25);
+  transition: all 0.15s ease-out;
+}
+.clay-button-gold:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 0 #C49800, 0 4px 8px rgba(196, 152, 0, 0.2);
 }
