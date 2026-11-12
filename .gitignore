@@ -2,6 +2,8 @@ node_modules/
 build/
 dist/
 coverage/
+.codebase-memory/
+.artifacts/
 .DS_Store
 *.log
 .env*

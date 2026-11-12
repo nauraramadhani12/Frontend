@@ -1,56 +1,57 @@
-import { PetState, PetType, ChatConversation } from '../types/index.ts';
+import type { PetState, PetType, ChatConversation } from '../types/index.ts';
+import { getSpecies } from '../data/species.ts';
 
 export const INITIAL_PETS: Record<PetType, PetState> = {
   tunas: {
     type: 'tunas',
-    variety: 'padi',
-    name: 'Si Tunas',
-    species: 'Padi Berkah Sawah',
+    variety: 'sorgum',
+    name: 'Sorgum',
+    species: 'Tanaman sorgum',
     stat1Name: 'Nutrisi',
     stat1: 30,
     stat2Name: 'Air',
     stat2: 10,
     stat3Name: 'Senang',
     stat3: 25,
-    speech: 'Kak, aku haus banget... tolong siram aku ya! 💦',
+    speech: 'Periksa kelembapan tanah sebelum menyiram.',
     isHungryOrThirsty: true,
   },
   koki: {
     type: 'koki',
-    variety: 'koi',
-    name: 'Si Koki',
-    species: 'Ikan Mas Koi Cantik',
+    variety: 'lele',
+    name: 'Lele',
+    species: 'Ikan lele',
     stat1Name: 'Pakan',
     stat1: 15,
     stat2Name: 'Air',
     stat2: 40,
     stat3Name: 'Senang',
     stat3: 30,
-    speech: 'Blub... aku lapar banget, tolong kasih makan ya!',
+    speech: 'Periksa pakan dan kualitas air kolam.',
     isHungryOrThirsty: true,
   },
   kuning: {
     type: 'kuning',
-    variety: 'kampung',
-    name: 'Si Kuning',
-    species: 'Anak Ayam Kampung',
+    variety: 'petelur',
+    name: 'Ayam petelur',
+    species: 'Ayam petelur',
     stat1Name: 'Kenyang',
     stat1: 15,
     stat2Name: 'Kandang',
     stat2: 40,
     stat3Name: 'Senang',
     stat3: 30,
-    speech: 'Kukuruyuk... aku lapar banget, kasih makan dong!',
+    speech: 'Pastikan pakan, air minum, dan kandang terjaga.',
     isHungryOrThirsty: true,
   },
 };
 
 export const RANK_LEVELS = [
-  { level: 1, title: 'Benih Harapan', minCare: 0, maxCare: 5 },
-  { level: 2, title: 'Tunas Muda', minCare: 5, maxCare: 10 },
-  { level: 3, title: 'Padi Berisi', minCare: 10, maxCare: 15 },
-  { level: 4, title: 'Lumbung Padi Lestari', minCare: 15, maxCare: 20 },
-  { level: 5, title: 'Petani Teladan', minCare: 20, maxCare: 30 },
+  { level: 1, title: 'Benih Harapan', minCare: 0, maxCare: 3 },
+  { level: 2, title: 'Tunas Muda', minCare: 3, maxCare: 6 },
+  { level: 3, title: 'Padi Berisi', minCare: 6, maxCare: 10 },
+  { level: 4, title: 'Lumbung Padi Lestari', minCare: 10, maxCare: 20 },
+  { level: 5, title: 'Petani Teladan', minCare: 20, maxCare: 20 },
 ];
 
 export function calculateMood(pet: PetState): 'sad' | 'happy' {
@@ -69,60 +70,45 @@ export function performCareAction(
   let feedbackText = '';
 
   if (pet.type === 'tunas') {
-    const plantLabel = pet.variety === 'berry' ? 'berry' : pet.variety === 'pisang' ? 'pisang' : pet.variety === 'sorgum' ? 'sorgum' : 'padi';
+    const plantLabel = getSpecies('tunas', pet.variety).label.toLowerCase();
     if (actionSlot === 'action1') {
       // Siram
       updated.stat2 = Math.min(100, updated.stat2 + 30);
       updated.stat3 = Math.min(100, updated.stat3 + 15);
-      feedbackText = `💦 Segar sekali! Air sejuk meresap ke akar tanaman ${plantLabel}!`;
-      updated.speech =
-        pet.variety === 'berry'
-          ? 'Segarnya! Buah berryku makin montok dan manis! 🍓'
-          : pet.variety === 'pisang'
-          ? 'Segarnya! Daun pisangku makin mekar dan hijau! 🍌'
-          : pet.variety === 'sorgum'
-          ? 'Segarnya! Tanaman sorgumku makin subur! 🌾'
-          : 'Segarnya! Terima kasih sudah menyiramku, Kak! 🌱';
+      feedbackText = `Penyiraman ${plantLabel} tercatat.`;
+      updated.speech = `Penyiraman ${plantLabel} tercatat. Cek tanah sebelum menyiram lagi.`;
     } else if (actionSlot === 'action2') {
       // Pupuk
       updated.stat1 = Math.min(100, updated.stat1 + 35);
       updated.stat3 = Math.min(100, updated.stat3 + 20);
-      feedbackText = `🌿 Nutrisi organik diserap! Tanaman ${plantLabel} makin subur!`;
-      updated.speech =
-        pet.variety === 'berry'
-          ? 'Nyam! Pupuk organiknya bikin buah berry makin lebat! ✨'
-          : pet.variety === 'pisang'
-          ? 'Nyam! Pupuk bikin pohon pisangku kokoh! 🍌'
-          : 'Nyam! Pupuk organiknya bikin aku makin subur! ✨';
+      feedbackText = `Pemupukan ${plantLabel} tercatat.`;
+      updated.speech = `Pemupukan ${plantLabel} tercatat. Ikuti dosis sesuai jenis pupuk.`;
     } else {
       // Sinar Matahari
       updated.stat3 = Math.min(100, updated.stat3 + 30);
       updated.stat1 = Math.min(100, updated.stat1 + 10);
-      feedbackText = `☀️ Hangatnya mentari pagi menyinari tanaman ${plantLabel}!`;
-      updated.speech =
-        pet.variety === 'berry'
-          ? 'Hangatnya mentari mematangkan buah berry dengan sempurna! 🌞'
-          : 'Hangatnya sinar surya pagi di sawah! Senang sekali! 🌞';
+      feedbackText = `Pemeriksaan cahaya ${plantLabel} tercatat.`;
+      updated.speech = `Pemeriksaan cahaya ${plantLabel} tercatat.`;
     }
   } else if (pet.type === 'koki') {
     if (actionSlot === 'action1') {
       // Beri Makan
       updated.stat1 = Math.min(100, updated.stat1 + 35);
       updated.stat3 = Math.min(100, updated.stat3 + 20);
-      feedbackText = '🥖 Pelet lezat dimakan lahap!';
-      updated.speech = 'Nyam nyam! Blub blub, perutku kenyang sekali! 🐟';
+      feedbackText = 'Pemberian pakan ikan tercatat.';
+      updated.speech = 'Pakan tercatat. Amati apakah pakan habis dalam beberapa menit.';
     } else if (actionSlot === 'action2') {
       // Ganti Air
       updated.stat2 = Math.min(100, updated.stat2 + 30);
       updated.stat3 = Math.min(100, updated.stat3 + 15);
-      feedbackText = '💧 Air kolam jernih dan kaya oksigen!';
-      updated.speech = 'Airnya bersih dan segar, aku bisa berenang lincah! 🌊';
+      feedbackText = 'Pergantian air kolam tercatat.';
+      updated.speech = 'Pergantian air tercatat. Lakukan bertahap.';
     } else {
       // Kuras Air
       updated.stat2 = Math.min(100, updated.stat2 + 40);
       updated.stat3 = Math.min(100, updated.stat3 + 25);
-      feedbackText = '✨ Lumut dan endapan dasar kolam dibersihkan!';
-      updated.speech = 'Dasar kolam berkilau tanpa kotoran, terima kasih! 🧼';
+      feedbackText = 'Pembersihan kolam tercatat.';
+      updated.speech = 'Pembersihan kolam tercatat.';
     }
   } else {
     // Si Kuning
@@ -130,20 +116,20 @@ export function performCareAction(
       // Beri Makan
       updated.stat1 = Math.min(100, updated.stat1 + 35);
       updated.stat3 = Math.min(100, updated.stat3 + 20);
-      feedbackText = '🌽 Biji jagung manis dipatuk dengan gembira!';
-      updated.speech = 'Kukuruyuk! Jagung manis ini lezat sekali! 🌾';
+      feedbackText = 'Pemberian pakan ayam tercatat.';
+      updated.speech = 'Pakan tercatat. Gunakan ransum sesuai umur ayam.';
     } else if (actionSlot === 'action2') {
       // Beri Minum
       updated.stat3 = Math.min(100, updated.stat3 + 20);
       updated.stat1 = Math.min(100, updated.stat1 + 10);
-      feedbackText = '💧 Wadah minum terisi air bersih!';
-      updated.speech = 'Gluk gluk... segarnya air minum di cuaca hangat! 💧';
+      feedbackText = 'Pengisian air minum tercatat.';
+      updated.speech = 'Air minum tercatat. Pastikan wadah tetap bersih.';
     } else {
       // Bersihkan
       updated.stat2 = Math.min(100, updated.stat2 + 35);
       updated.stat3 = Math.min(100, updated.stat3 + 25);
-      feedbackText = '🧹 Kandang disapu bersih dari sekam kotor!';
-      updated.speech = 'Kandangku wangi dan hangat, nyaman untuk istirahat! ✨';
+      feedbackText = 'Pembersihan kandang tercatat.';
+      updated.speech = 'Pembersihan kandang tercatat. Jaga alas tetap kering.';
     }
   }
 

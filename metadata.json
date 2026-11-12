@@ -1,6 +1,6 @@
 {
-  "name": "Dewi Sri - Agro Pet & AI Farm Companion",
-  "description": "Aplikasi pendamping cerdas pertanian dan peternakan dengan simulasi rawat pet virtual (Si Tunas, Si Koki, Si Kuning) serta konsultasi agronomi interaktif bersama Asisten Dewi Sri.",
+  "name": "Dewi Sri",
+  "description": "Pendamping perawatan tanaman, ikan, dan ayam dengan jadwal harian, jurnal lokal, dan panduan konsultasi dasar.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": []
 }

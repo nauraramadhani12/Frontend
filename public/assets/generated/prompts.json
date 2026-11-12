@@ -1,0 +1,114 @@
+{
+  "mode": "Built-in image_gen",
+  "reference": "User-provided Dewi Sri mobile design reference",
+  "assets": [
+    {
+      "file": "garden.png",
+      "transparent": false,
+      "prompt": "Use case: stylized-concept. Asset type: landscape backdrop for a mobile Indonesian farming companion app, wide landscape 1536x1024. Create a lush, lovingly rendered Indonesian rice-field garden, green terraced fields, small wooden farmhouse in middle distance, distant soft blue mountains, clear pastel blue sky and fluffy sunlit clouds. Leafy trees softly frame left and right, banana leaves and bright grass at bottom corners, small rustic wooden fence on lower right, tiny white flowers. A warm golden morning, idyllic peaceful rural atmosphere. Style: polished animated feature film background, detailed painterly 3D, soft natural textures, fresh lime and forest greens, creamy golden highlights. Keep central middle area low-detail with sunny green meadow and sky for interface overlays and a separate mascot. Match the supplied reference's gentle storybook agricultural garden mood. No characters, no animals, no user interface, no text, no logos, no device mockup, no watermark."
+    },
+    {
+      "file": "pet-plant.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Asset type: transparent PNG virtual pet mascot for a warm Indonesian farming app. Create a single adorable anthropomorphic young rice plant with four lush curved green leaves and a few graceful golden rice grains, growing in a round small warm terracotta pot. Friendly face on the pot, large expressive glossy dark eyes, tiny smiling mouth, subtle peach rosy cheeks. A miniature woven straw farmer hat nestles on the top leaves, a tiny leaf arm waving hello. Style: high quality animated feature film 3D character, soft plush-like organic leaf textures, rounded appealing proportions, warm natural morning lighting, polished storybook realism matching a lush rice-field garden app reference. Full body centered, three quarter view, entire hat and pot visible, generous transparent padding, object occupies 80 percent height. Genuine transparent background, no scenery, no ground plane, no text, no watermark."
+    },
+    {
+      "file": "pet-fish.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Asset type: transparent PNG virtual pet mascot for a warm Indonesian farming app. Create a single adorable small orange and cream koi fish floating horizontally, full body with plump round proportions, large expressive glossy black eyes, tiny smiling open mouth, peach rosy cheeks, delicate flowing tail and fins, a few glistening natural scale details. A cute small woven straw farmer hat on top of its head. Three quarter view facing slightly left toward camera. Style: polished high quality animated feature film 3D mascot, soft tactile natural textures, gentle morning lighting, warm storybook realism matching an idyllic rice-field garden app reference. Entire fish tail fins and hat visible, centered, generous transparent padding, occupies 80 percent canvas. Genuine transparent background, no bowl, no scene, no water surface, no text, no logo, no watermark."
+    },
+    {
+      "file": "pet-chicken.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Asset type: transparent PNG virtual pet mascot for a warm Indonesian farming app. Create a single adorable plump little cream and golden yellow farm chicken, with subtly fluffy detailed feather texture, tiny orange feet, short wings, small soft red comb, little orange beak, large glossy dark eyes, adorable peach cheeks, friendly happy face. Wearing a miniature natural woven straw farmer hat with dark green band. Full body three quarter view slightly facing left toward camera, one tiny wing waving hello. High quality animated feature film 3D character, soft warm morning light, tactile realistic feather textures, rounded charming storybook proportions matching an idyllic Indonesian rice field farming app reference. Entire hat and feet visible, centered, generous transparent padding, occupies 80 percent canvas. Genuine transparent background, no scene, no fence, no text, no logo, no watermark."
+    },
+    {
+      "file": "avatar-penyuluh.png",
+      "transparent": true,
+      "prompt": "Friendly original portrait mascot for a farming companion mobile app: a cheerful adult Indonesian woman farm guide wearing a broad woven sun hat and a simple leaf-green shirt, warm smile, holding a tiny seedling. Waist-up, soft painterly 3D illustration, gentle daylight, carefully rendered face and hands, isolated transparent background, no words, no logos, no extra objects."
+    },
+    {
+      "file": "pond.png",
+      "transparent": false,
+      "prompt": "Use case: stylized-concept. Asset type: portrait habitat background for a mobile Indonesian farming app, no interface. A believable freshwater fish pond underwater scene inspired by the user's reference image: clear turquoise water, soft rays of sunlight from the surface, smooth pebbles on the pond floor, aquatic plants at left and right edges, a few small naturally proportioned freshwater fish in the distance. Portrait framing with a broad uncluttered central area where a separate fish cutout can be placed. Polished painterly 3D illustration with natural textures, bright but restrained colors matching a warm farming app. No text, UI, logos, cartoon faces, human characters, or watermark."
+    },
+    {
+      "file": "kandang.png",
+      "transparent": false,
+      "prompt": "Use case: stylized-concept. Asset type: portrait habitat background for land animals in a mobile Indonesian farming app. A tidy small poultry yard in rural Indonesia: warm earth, short grass, a simple wooden coop and low woven fence in the distance, subtle straw near ground, soft hills and tree foliage beyond. Sunny morning, polished painterly 3D illustration matching a lush farming garden background. Central lower half uncluttered for a separate hen cutout. No animals, people, text, interface, logo, or watermark."
+    },
+    {
+      "file": "sorgum.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Asset type: transparent botanical cutout for Indonesian farming app. A botanically accurate mature sorghum plant (Sorghum bicolor): tall jointed green stalk, long blade leaves, dense reddish golden seed panicle at top, some roots and a small mound of soil at base. Polished painterly 3D educational illustration, full plant centered, natural proportions, soft warm daylight. No face, anthropomorphism, pot, labels, text, background, or watermark."
+    },
+    {
+      "file": "kangkung.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Asset type: transparent educational species cutout for a mobile Indonesian farming app. A botanically accurate bunch of water spinach (kangkung, Ipomoea aquatica): long hollow green stems, narrow arrow-shaped leaves and small visible roots in moist soil. Full plant cutout. Polished painterly 3D educational illustration, natural textures and proportions, soft warm daylight, centered with full silhouette. No anthropomorphic face, clothes, hat, text, labels, logo, scenery, frame, or watermark."
+    },
+    {
+      "file": "sawi.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Asset type: transparent educational species cutout for a mobile Indonesian farming app. A botanically accurate mature green mustard (sawi hijau, Brassica juncea): broad crinkled medium green leaves rising from pale green short stems, roots and small soil mound. Full plant cutout. Polished painterly 3D educational illustration, natural textures and proportions, soft warm daylight. No anthropomorphic face, clothes, hat, text, labels, logo, scenery, frame, or watermark."
+    },
+    {
+      "file": "selada.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Asset type: transparent educational species cutout for a mobile Indonesian farming app. A botanically accurate loose leaf lettuce (selada hijau): layered ruffled light green leaves, short core, roots and small soil mound. Full plant cutout. Polished painterly 3D educational illustration, natural textures and proportions, soft warm daylight. No anthropomorphic face, clothes, hat, text, labels, logo, scenery, frame, or watermark."
+    },
+    {
+      "file": "melon.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Asset type: transparent educational species cutout for a mobile Indonesian farming app. A botanically accurate melon vine (Cucumis melo): trailing green vine with lobed leaves and one round ripe netted beige melon resting on soil. Full plant cutout. Polished painterly 3D educational illustration, natural textures and proportions, soft warm daylight. No anthropomorphic face, clothes, hat, text, labels, logo, scenery, frame, or watermark."
+    },
+    {
+      "file": "semangka.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Asset type: transparent educational species cutout for a mobile Indonesian farming app. A botanically accurate watermelon vine (semangka, Citrullus lanatus): trailing green vine with deeply lobed leaves and one ripe striped green watermelon resting on soil. Full plant cutout. Polished painterly 3D educational illustration, natural textures and proportions, soft warm daylight. No anthropomorphic face, clothes, hat, text, labels, logo, scenery, frame, or watermark."
+    },
+    {
+      "file": "cabai.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Asset type: transparent educational species cutout for a mobile Indonesian farming app. A botanically accurate chili pepper plant (cabai merah, Capsicum annuum): upright branching green stems, pointed leaves and several slender red ripe chilies, roots and small soil mound. Full plant cutout. Polished painterly 3D educational illustration, natural textures and proportions, soft warm daylight. No anthropomorphic face, clothes, hat, text, labels, logo, scenery, frame, or watermark."
+    },
+    {
+      "file": "lele.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Asset type: transparent educational species cutout for a mobile Indonesian farming app. One biologically recognizable Indonesian catfish (ikan lele, Clarias species) swimming horizontally: elongated dark charcoal body, long whisker barbels, dorsal fin, natural eyes and mouth. Polished painterly 3D educational illustration, natural proportions, soft warm daylight. No anthropomorphic face, clothes, hat, text, labels, scenery, frame, or watermark."
+    },
+    {
+      "file": "nila.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Asset type: transparent educational species cutout for a mobile Indonesian farming app. One biologically recognizable Nile tilapia (ikan nila, Oreochromis niloticus) swimming horizontally: silver gray oval body, subtly striped scales, spiny dorsal fin, natural eyes and mouth. Polished painterly 3D educational illustration, natural proportions, soft warm daylight. No anthropomorphic face, clothes, hat, text, labels, scenery, frame, or watermark."
+    },
+    {
+      "file": "ikan-mas.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Asset type: transparent educational species cutout for a mobile Indonesian farming app. One biologically recognizable common carp (ikan mas, Cyprinus carpio) swimming horizontally: golden bronze scales, full carp body, short mouth barbels, natural eyes and mouth. Not a koi pattern. Polished painterly 3D educational illustration, natural proportions, soft warm daylight. No anthropomorphic face, clothes, hat, text, labels, scenery, frame, or watermark."
+    },
+    {
+      "file": "ayam-petelur.png",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. Asset type: transparent educational species cutout for a mobile Indonesian farming app. One mature brown laying hen in a calm standing pose, natural red comb and wattles, realistic feathers, two beige eggs beside her on straw. Biologically recognizable and anatomically plausible. Polished painterly 3D educational illustration, natural proportions, soft warm daylight. No anthropomorphic face, clothes, hat, text, labels, scenery, frame, or watermark."
+    },
+      {
+        "file": "care-tools-v1.png",
+        "transparent": true,
+        "derivative": "care-tools-v1.webp",
+        "prompt": "Use case: stylized-concept. Asset type: premium small transparent 3D illustrated action icon for Dewi Sri, a friendly Indonesian home farming mobile app for adult women. Warm natural materials, soft dimensional painterly 3D, believable object proportions, gentle daylight, forest green and terracotta with a little warm yellow. Entire group centered, simple clear silhouette, enough padding to fit a 100px card thumbnail. No face, no anthropomorphism, no text, no letters, no numbers, no decorative sparkles, no hats, no people, no logo, no surrounding scenery, no background haze. Fully transparent background outside the physical objects. Subject: A small sage green metal watering can with a curved handle and spout, beside one healthy plain green seedling in a small terracotta pot and a little soil at its base. Objects clearly separated yet one balanced group."
+      },
+      {
+        "file": "photo-leaf-v1.png",
+        "transparent": true,
+        "derivative": "photo-leaf-v1.webp",
+        "prompt": "Use case: stylized-concept. Asset type: premium small transparent 3D illustrated action icon for Dewi Sri, a friendly Indonesian home farming mobile app for adult women. Warm natural materials, soft dimensional painterly 3D, believable object proportions, gentle daylight, forest green and terracotta with a little warm yellow. Entire group centered, simple clear silhouette, enough padding to fit a 100px card thumbnail. No face, no anthropomorphism, no text, no letters, no numbers, no decorative sparkles, no hats, no people, no logo, no surrounding scenery, no background haze. Fully transparent background outside the physical objects. Subject: A compact cream and sage green camera with one natural healthy leaf in the foreground and a small magnifying glass resting beside it. The lens is clearly a camera lens, no eye-like face arrangement. Restrained tool illustration, no screen content."
+      },
+      {
+        "file": "daily-calendar-v2.png",
+        "transparent": true,
+        "derivative": "daily-calendar-v2.webp",
+        "prompt": "Use case: stylized-concept. Asset type: simple transparent 3D action illustration for an Indonesian farming mobile app. One small cream desk calendar with a sage green rigid stand and terracotta binding rings. Six large rounded blank squares on the page, exactly one ochre checkmark. No letters, no digits, no plant or leaves, no face, no glow, no shadow outside the object, no haze. Soft matte clay-like paper and painted wood, believable object proportions, angled three quarter view, full calendar centered with generous transparent padding. Clean alpha cutout of the calendar only, everything outside its physical silhouette is fully transparent."
+      }
+  ]
+}

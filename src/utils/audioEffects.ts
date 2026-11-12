@@ -2,6 +2,11 @@
 // Lightweight, zero external files, delightful tactile audio feedback
 
 let audioCtx: AudioContext | null = null;
+let appSoundEnabled = true;
+
+export function setAudioEnabled(enabled: boolean) {
+  appSoundEnabled = enabled;
+}
 
 function getAudioContext(): AudioContext | null {
   if (typeof window === 'undefined') return null;
@@ -18,7 +23,7 @@ function getAudioContext(): AudioContext | null {
 }
 
 export function playWaterDrop(soundEnabled = true) {
-  if (!soundEnabled) return;
+  if (!appSoundEnabled || !soundEnabled) return;
   try {
     const ctx = getAudioContext();
     if (!ctx) return;
@@ -44,7 +49,7 @@ export function playWaterDrop(soundEnabled = true) {
 }
 
 export function playSparkle(soundEnabled = true) {
-  if (!soundEnabled) return;
+  if (!appSoundEnabled || !soundEnabled) return;
   try {
     const ctx = getAudioContext();
     if (!ctx) return;
@@ -73,7 +78,7 @@ export function playSparkle(soundEnabled = true) {
 }
 
 export function playWarmSun(soundEnabled = true) {
-  if (!soundEnabled) return;
+  if (!appSoundEnabled || !soundEnabled) return;
   try {
     const ctx = getAudioContext();
     if (!ctx) return;
@@ -102,7 +107,7 @@ export function playWarmSun(soundEnabled = true) {
 }
 
 export function playHeartPop(soundEnabled = true) {
-  if (!soundEnabled) return;
+  if (!appSoundEnabled || !soundEnabled) return;
   try {
     const ctx = getAudioContext();
     if (!ctx) return;
@@ -129,7 +134,7 @@ export function playHeartPop(soundEnabled = true) {
 }
 
 export function playPop(soundEnabled = true) {
-  if (!soundEnabled) return;
+  if (!appSoundEnabled || !soundEnabled) return;
   try {
     const ctx = getAudioContext();
     if (!ctx) return;
@@ -156,7 +161,7 @@ export function playPop(soundEnabled = true) {
 }
 
 export function playLevelUpFanfare(soundEnabled = true) {
-  if (!soundEnabled) return;
+  if (!appSoundEnabled || !soundEnabled) return;
   try {
     const ctx = getAudioContext();
     if (!ctx) return;

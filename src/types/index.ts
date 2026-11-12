@@ -1,8 +1,8 @@
 export type PetType = 'tunas' | 'koki' | 'kuning';
 
-export type PlantVariety = 'padi' | 'pisang' | 'sorgum' | 'berry';
-export type FishVariety = 'koi' | 'lele' | 'nila';
-export type ChickenVariety = 'kampung' | 'petelur' | 'pedaging';
+export type PlantVariety = 'sorgum' | 'kangkung' | 'sawi' | 'selada' | 'melon' | 'semangka' | 'cabai';
+export type FishVariety = 'lele' | 'nila' | 'mas';
+export type ChickenVariety = 'petelur';
 export type PetVariety = PlantVariety | FishVariety | ChickenVariety;
 
 export interface PetState {
@@ -68,6 +68,7 @@ export interface ChatConversation {
   dateCategory: 'hari_ini' | 'kemarin' | 'minggu_ini' | 'lebih_lama';
   dateLabel: string;
   timestamp: string;
+  updatedAt?: string;
   messages: ChatMessage[];
   isActive?: boolean;
 }
@@ -78,6 +79,8 @@ export type ActiveScreen =
   | 'register'
   | 'forgot_password'
   | 'beranda'
+  | 'jadwal'
+  | 'jurnal'
   | 'chat_ai'
   | 'chat_history'
   | 'pengaturan'

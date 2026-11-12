@@ -1,0 +1,181 @@
+.garden-home-v2 { display: grid; gap: 20px; }
+.gh-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.gh-header-actions { display: flex; align-items: center; gap: 8px; }
+.gh-header .icon-button { width: 44px; min-width: 44px; height: 44px; background: #fffdf8; }
+.gh-profile { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 44px; padding: 0; color: var(--muted); font-size: .65rem; font-weight: 800; }
+.gh-profile img { width: 35px; height: 35px; object-fit: cover; border: 2px solid #fff; border-radius: 50%; background: var(--leaf); }
+.gh-greeting { position: relative; padding-right: 52px; }
+.gh-greeting > p { color: var(--muted); font-size: .88rem; margin-bottom: 4px; }
+.gh-greeting h1 { font-size: 1.9rem; }
+.gh-schedule-bell { position: absolute; top: 5px; right: 0; display: grid; place-items: center; width: 44px; height: 44px; color: var(--forest); border: 1px solid var(--line); border-radius: 14px; background: white; }
+.gh-schedule-bell > span { position: absolute; top: -6px; right: -4px; display: grid; place-items: center; min-width: 21px; height: 21px; padding: 0 4px; background: var(--forest); color: white; border: 2px solid var(--paper); border-radius: 50%; font-size: .62rem; font-weight: 900; }
+.gh-garden { min-width: 0; }
+.gh-categories { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 5px; margin-bottom: 12px; border: 1px solid #e0e7d8; border-radius: 17px; background: #eff3e8; }
+.gh-categories button { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 45px; padding: 9px 3px; border: 1px solid transparent; border-radius: 12px; color: #576c56; font-size: .9rem; font-weight: 850; }
+.gh-categories button:hover { background: #fff9; }
+.gh-categories button.is-active { background: white; color: var(--forest); border-color: #d6e4cc; box-shadow: 0 3px 8px #27482d09; }
+.gh-habitat { position: relative; isolation: isolate; height: 248px; overflow: hidden; border-radius: 25px; background-size: cover; background-position: center 62%; background-color: #b6d3a0; }
+.gh-habitat::before { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(#1434255e, transparent 39%, transparent 67%, #12342044); }
+.gh-habitat--koki { background-position: center 52%; }
+.gh-habitat--kuning { background-position: center 56%; }
+.gh-habitat-heading { position: absolute; z-index: 3; top: 16px; left: 17px; right: 14px; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; color: white; }
+.gh-habitat-heading > div { min-width: 0; padding: 9px 12px; border-radius: 14px; background: #fffdf1f2; color: var(--forest-deep); }
+.gh-habitat-heading > div > span { display: block; color: #536b47; font-size: .62rem; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; }
+.gh-habitat-heading h2 { margin-top: 3px; font-size: 1.4rem; }
+.gh-habitat-heading button { display: flex; align-items: center; gap: 2px; min-height: 44px; padding: 8px 10px; border: 1px solid #ffffffb3; border-radius: 22px; color: #244b33; background: #fffdf1ed; font-size: .8rem; font-weight: 900; }
+.gh-subject { position: absolute; right: 17px; bottom: 5px; width: 245px; height: 225px; padding: 0; }
+.gh-subject img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 9px 7px #1a321e44); transition: transform .2s; }
+.gh-subject:hover img { transform: scale(1.03); }
+.gh-habitat--tunas .gh-subject { width: 200px; height: 210px; right: 23px; }
+.gh-habitat--koki .gh-subject { width: 265px; height: 165px; right: 16px; bottom: 20px; }
+.gh-habitat--kuning .gh-subject { width: 230px; height: 190px; right: 5px; }
+.gh-habitat-note { position: absolute; z-index: 3; left: 16px; bottom: 15px; max-width: 48%; padding: 5px 9px; border-radius: 9px; background: #ffffecdd; color: #34502d; font-size: .72rem; font-weight: 850; }
+.gh-main-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: -7px; }
+.gh-main-actions > button { display: flex; flex-direction: column; align-items: center; min-width: 0; padding: 9px 5px 14px; border: 1px solid #dce5d4; border-radius: 20px; background: #eef4e7; text-align: center; }
+.gh-main-actions > button:nth-child(2) { background: #fff0df; border-color: #f0dfcc; }
+.gh-main-actions > button:nth-child(3) { background: #edf1e6; }
+.gh-main-actions > button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px #304b2610; }
+.gh-action-art { display: grid; place-items: center; width: 100%; height: 80px; margin-bottom: 5px; }
+.gh-action-art img { width: 91px; height: 80px; object-fit: contain; mix-blend-mode: multiply; }
+.gh-main-actions strong { font-size: .96rem; font-weight: 900; color: #24492f; }
+.gh-main-actions > button > span:last-child { margin-top: 3px; color: #596b56; font-size: .65rem; }
+.gh-today { display: grid; gap: 10px; }
+.gh-today-count { margin: -7px 0 0; color: var(--muted); font-size: .82rem; }
+.gh-empty-schedule { display: flex; align-items: center; gap: 15px; padding: 16px; border: 1px solid var(--line); border-radius: 20px; background: white; }
+.gh-empty-schedule > img { width: 82px; height: 85px; flex: none; object-fit: contain; }
+.gh-empty-schedule h3 { font-size: .98rem; }
+.gh-empty-schedule p { margin-top: 4px; color: var(--muted); font-size: .84rem; }
+.gh-empty-schedule .text-button { justify-content: flex-start; margin-top: 1px; }
+.gh-more > h2 { margin-bottom: 13px; font-size: 1.17rem; }
+.gh-feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.gh-feature-grid > button { display: grid; grid-template-columns: 24px minmax(0, 1fr) 15px; align-items: center; gap: 9px; min-height: 76px; padding: 11px 12px; border: 1px solid var(--line); border-radius: 16px; background: #fff; color: var(--forest); text-align: left; }
+.gh-feature-grid > button span { color: var(--ink); font-size: .85rem; font-weight: 800; line-height: 1.35; }
+.gh-feature-grid > button > svg:last-child { color: #78906e; }
+.gh-feature-grid > button:hover { background: #f1f6e9; }
+.gh-journey { overflow: hidden; border: 1px solid #e3e5cf; border-radius: 19px; background: #f4f4e5; }
+.gh-journey-link { display: flex; align-items: center; gap: 11px; width: 100%; padding: 15px; text-align: left; }
+.gh-journey-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 13px; background: #f4e6b6; color: #8c661f; }
+.gh-journey-link > span:nth-child(2) { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: 2px; }
+.gh-journey-link strong { font-size: .92rem; font-weight: 900; }
+.gh-journey-link small { color: #5d6c51; font-size: .73rem; }
+.gh-checkin { display: flex; align-items: center; justify-content: space-between; gap: 6px; width: 100%; min-height: 47px; padding: 10px 16px; border-top: 1px solid #e1e5cb; color: var(--forest); font-size: .82rem; font-weight: 900; }
+.gh-checkin > span { padding: 2px 7px; border-radius: 7px; background: #e0ebd2; font-size: .72rem; }
+.gh-checkin.is-done { justify-content: flex-start; color: #52664b; opacity: 1; }
+.species-search { position: relative; margin-bottom: 14px; }
+.species-search > svg { position: absolute; top: 14px; left: 13px; color: #6e8267; }
+.species-search input { width: 100%; min-height: 48px; padding: 11px 12px 11px 42px; border: 1px solid #82957a; border-radius: 13px; background: white; color: var(--ink); }
+.species-filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.species-filters button { min-height: 44px; padding: 8px 12px; border: 1px solid #d8e3ce; border-radius: 20px; color: #4f6849; background: white; font-size: .8rem; font-weight: 800; }
+.species-filters button.is-active { background: var(--forest); color: white; border-color: var(--forest); }
+.species-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; }
+.species-option { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 167px; padding: 13px 7px; border: 1px solid #dce4d4; border-radius: 19px; background: white; }
+.species-option.is-selected { border: 2px solid var(--forest); background: #e9f3e4; }
+.species-option img { width: 103px; height: 98px; object-fit: contain; }
+.species-option strong { color: #2b4532; font-size: .98rem; font-weight: 900; }
+.species-option small { font-size: .76rem; color: #5a7154; }
+.species-check { position: absolute; top: 9px; right: 9px; display: grid; place-items: center; width: 23px; height: 23px; background: var(--forest); color: white; border-radius: 50%; }
+.species-no-results { padding: 26px 0; text-align: center; color: var(--muted); }
+.care-subject-card { display: flex; align-items: center; gap: 15px; padding: 12px 15px; border-radius: 19px; background: var(--leaf); }
+.care-subject-card img { width: 83px; height: 88px; object-fit: contain; }
+.care-subject-card strong { font-size: 1.2rem; font-weight: 900; }
+.care-subject-card p { color: #546b4b; font-size: .8rem; }
+.care-subject-card small { display: block; margin-top: 6px; color: #52664d; font-size: .8rem; }
+.care-buttons { display: grid; gap: 9px; margin-top: 17px; }
+.care-buttons > button { display: flex; align-items: center; gap: 11px; min-height: 73px; padding: 12px; border: 1px solid var(--line); border-radius: 15px; background: #fff; text-align: left; }
+.care-button-icon { display: grid; place-items: center; width: 43px; height: 43px; flex: none; border-radius: 12px; background: #edf3e6; color: var(--forest); }
+.care-buttons > button > span:nth-child(2) { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: 3px; }
+.care-buttons strong { font-size: .98rem; font-weight: 900; }
+.care-buttons small { color: var(--muted); font-size: .77rem; line-height: 1.4; }
+.care-buttons > button > svg { color: #728b69; }
+.care-buttons > button:hover { background: #f2f6eb; }
+.care-saved { display: flex; align-items: flex-start; gap: 7px; padding: 12px; margin-top: 13px; border-radius: 12px; background: #e6f1df; color: var(--forest); font-size: .85rem; font-weight: 800; }
+.care-simulation { margin-top: 20px; color: var(--muted); font-size: .8rem; }
+.care-simulation summary { min-height: 44px; padding-block: 11px; font-weight: 800; }
+.care-simulation > div { display: grid; gap: 10px; margin-top: 8px; }
+.care-metric > span { display: flex; justify-content: space-between; }
+.care-metric meter { display: block; width: 100%; height: 10px; accent-color: var(--forest); }
+.care-simulation > p { display: flex; align-items: flex-start; gap: 5px; margin-top: 12px; }
+.guide-subject { display: grid; place-items: center; height: 160px; margin-bottom: 14px; border-radius: 18px; background: var(--leaf); }
+.guide-subject img { width: 155px; height: 145px; object-fit: contain; }
+.garden-guide-steps { display: grid; gap: 16px; padding: 0; margin: 22px 0; list-style: none; }
+.garden-guide-steps li { display: flex; align-items: flex-start; gap: 11px; font-size: .94rem; }
+.garden-guide-steps li > span { display: grid; place-items: center; width: 29px; height: 29px; flex: none; border-radius: 50%; color: var(--forest); background: #e6eedb; font-size: .85rem; font-weight: 900; }
+.weather-placeholder { display: flex; align-items: center; flex-direction: column; gap: 13px; padding: 27px 19px; border-radius: 19px; background: #edf3e8; color: var(--forest); text-align: center; }
+.weather-placeholder strong { font-size: 1.1rem; }
+.weather-placeholder p { color: var(--muted); font-size: .9rem; }
+.weather-location { display: flex; align-items: center; gap: 7px; margin: 20px 0; color: #587051; font-size: .9rem; }
+.schedule-cards { display: grid; gap: 10px; }
+.schedule-card { display: flex; align-items: center; gap: 10px; min-width: 0; padding: 13px 12px; border: 1px solid var(--line); border-radius: 18px; background: white; }
+.schedule-card > img { width: 48px; height: 57px; flex: none; object-fit: contain; }
+.schedule-card-copy { flex: 1; min-width: 0; }
+.schedule-card-copy > span { display: flex; align-items: center; gap: 4px; margin-bottom: 4px; color: #617653; font-size: .73rem; font-weight: 750; }
+.schedule-card-copy h3 { font-size: .94rem; line-height: 1.3; }
+.schedule-card-copy small { display: flex; align-items: center; gap: 2px; margin-top: 5px; color: #4d7848; font-size: .7rem; }
+.schedule-card-actions { display: flex; flex: none; flex-direction: column; align-items: center; gap: 3px; }
+.schedule-complete { display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 2px; min-width: 48px; min-height: 49px; padding: 4px 7px; border: 1px solid #c7d7bc; border-radius: 12px; color: var(--forest); background: #edf5e7; font-size: .65rem; font-weight: 900; }
+.schedule-complete.is-done { background: #f1f5e9; color: #5e7952; opacity: 1; }
+.schedule-edit { display: flex; align-items: center; gap: 4px; min-height: 44px; padding: 7px; color: #596f51; font-size: .72rem; font-weight: 800; }
+.schedule-page { display: grid; gap: 20px; }
+.schedule-page .page-heading { padding-bottom: 0; }
+.schedule-summary { display: flex; align-items: center; gap: 16px; padding: 18px; border: 1px solid #d7e5cc; border-radius: 21px; background: #eaf2df; }
+.schedule-summary > img { width: 78px; height: 83px; object-fit: contain; }
+.schedule-summary > div { flex: 1; }
+.schedule-summary strong { display: block; color: var(--forest-deep); font-size: 1.18rem; }
+.schedule-summary p { margin-top: 3px; color: #53684c; font-size: .83rem; }
+.schedule-summary progress { display: block; width: 100%; height: 8px; margin-top: 12px; accent-color: var(--forest); border: 0; border-radius: 5px; }
+.schedule-summary progress::-webkit-progress-bar { background: #cfdcbe; border-radius: 5px; }
+.schedule-summary progress::-webkit-progress-value { background: var(--forest); border-radius: 5px; }
+.schedule-summary progress::-moz-progress-bar { background: var(--forest); border-radius: 5px; }
+.schedule-filters { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; padding: 5px; border-radius: 14px; background: #edf1e6; }
+.schedule-filters button { min-height: 44px; padding: 7px; border-radius: 10px; color: #58704d; font-size: .82rem; font-weight: 850; }
+.schedule-filters button.is-active { background: white; color: var(--forest); box-shadow: 0 2px 5px #254e2610; }
+.schedule-empty { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 28px 20px; border: 1px dashed #c9d6bc; border-radius: 23px; background: #fffdf7; text-align: center; }
+.schedule-empty img { width: 130px; height: 130px; object-fit: contain; }
+.schedule-empty p { max-width: 29ch; color: var(--muted); font-size: .9rem; }
+.schedule-editor-form { display: grid; gap: 16px; }
+.schedule-editor-summary { display: flex; align-items: center; gap: 13px; padding: 13px; border-radius: 15px; background: var(--leaf); }
+.schedule-editor-summary img { width: 60px; height: 70px; object-fit: contain; }
+.schedule-editor-summary strong { display: block; font-size: 1rem; }
+.schedule-editor-summary small { display: block; margin-top: 2px; color: var(--muted); font-size: .82rem; }
+.schedule-editor-repeat { display: flex; align-items: center; gap: 8px; padding: 11px 0; color: #506848; font-size: .9rem; }
+.schedule-delete { min-height: 44px; width: 100%; color: #9a3d29; font-size: .9rem; font-weight: 850; }
+.journal-groups { display: grid; gap: 24px; }
+.journal-group > h2 { margin-bottom: 12px; color: #526a4c; font-size: .92rem; }
+.journal-entry { display: flex; gap: 12px; align-items: center; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.journal-entry img { width: 47px; height: 54px; object-fit: contain; }
+.journal-entry > div { flex: 1; }
+.journal-entry h3 { font-size: .92rem; }
+.journal-entry p, .journal-entry > time { color: var(--muted); font-size: .78rem; }
+.journal-count { padding: 16px; border: 1px solid var(--line); border-radius: 17px; background: white; color: #4b6742; font-size: .9rem; }
+@media (min-width: 500px) {
+  .gh-habitat { height: 280px; }
+  .gh-habitat--tunas .gh-subject { width: 235px; height: 240px; }
+  .gh-habitat--koki .gh-subject { width: 310px; height: 185px; }
+  .gh-habitat--kuning .gh-subject { width: 275px; height: 220px; }
+  .gh-action-art { height: 96px; }
+  .gh-action-art img { width: 112px; height: 96px; }
+}
+@media (max-width: 360px) {
+  .garden-home-v2 { gap: 18px; }
+  .gh-sound { display: none; }
+  .gh-greeting h1 { font-size: 1.7rem; }
+  .gh-categories button { font-size: .8rem; gap: 4px; }
+  .gh-habitat { height: 220px; }
+  .gh-habitat-heading { left: 13px; top: 13px; right: 10px; }
+  .gh-habitat-heading h2 { font-size: 1.3rem; }
+  .gh-habitat--tunas .gh-subject { width: 163px; height: 180px; right: 10px; }
+  .gh-habitat--koki .gh-subject { width: 218px; height: 140px; right: 0; }
+  .gh-habitat--kuning .gh-subject { width: 190px; height: 160px; right: -4px; }
+  .gh-main-actions { gap: 7px; }
+  .gh-action-art { height: 66px; }
+  .gh-action-art img { width: 76px; height: 66px; }
+  .gh-main-actions strong { font-size: .83rem; }
+  .gh-main-actions > button > span:last-child { font-size: .58rem; }
+  .gh-feature-grid { gap: 7px; }
+  .gh-feature-grid > button { padding: 10px; gap: 7px; grid-template-columns: 22px minmax(0, 1fr); }
+  .gh-feature-grid > button > svg:last-child { display: none; }
+  .gh-feature-grid > button span { font-size: .8rem; }
+  .schedule-card { padding-inline: 10px; gap: 7px; }
+  .schedule-card > img { width: 39px; }
+  .schedule-card-copy h3 { font-size: .84rem; }
+}

@@ -1,0 +1,21 @@
+[mcp_servers.codebase_memory]
+command = "powershell"
+args = ["-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", ".codex/start-codebase-memory.ps1"]
+startup_timeout_sec = 30
+default_tools_approval_mode = "prompt"
+enabled_tools = [
+  "index_repository",
+  "search_graph",
+  "query_graph",
+  "trace_path",
+  "get_code_snippet",
+  "get_file_outline",
+  "get_graph_schema",
+  "compare_graphs",
+  "get_architecture",
+  "search_code",
+  "list_projects",
+  "index_status",
+  "check_index_coverage",
+  "detect_changes",
+]

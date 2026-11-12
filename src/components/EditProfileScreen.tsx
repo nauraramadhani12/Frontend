@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
-import { UserProfile } from '../types/index.ts';
+import { useEffect, useRef, useState } from 'react';
+import type { FormEvent } from 'react';
+import { ArrowLeft, Camera, Check, Fish, Leaf, MapPin, Save, UserRound, Wheat } from 'lucide-react';
+import type { UserProfile } from '../types/index.ts';
 import { playPop, playSparkle } from '../utils/audioEffects.ts';
+import '../styles/secondary.css';
 
 interface EditProfileScreenProps {
   userProfile: UserProfile;
@@ -8,262 +11,102 @@ interface EditProfileScreenProps {
   onBack: () => void;
 }
 
-export const EditProfileScreen: React.FC<EditProfileScreenProps> = ({
-  userProfile,
-  onSaveProfile,
-  onBack,
-}) => {
+type CareFocus = UserProfile['careFocus'][number];
+
+export function EditProfileScreen({ userProfile, onSaveProfile, onBack }: EditProfileScreenProps) {
   const [name, setName] = useState(userProfile.name);
   const [region, setRegion] = useState(userProfile.region);
-  const [focusList, setFocusList] = useState<('tanaman' | 'ikan' | 'ayam')[]>(userProfile.careFocus || ['tanaman']);
-  const [showToast, setShowToast] = useState(false);
+  const [focusList, setFocusList] = useState<CareFocus[]>(userProfile.careFocus?.length ? userProfile.careFocus : ['tanaman']);
+  const [avatarUrl, setAvatarUrl] = useState(userProfile.avatarUrl || '/assets/generated/avatar-penyuluh.png');
+  const [avatarError, setAvatarError] = useState('');
+  const [nameError, setNameError] = useState('');
+  const [focusError, setFocusError] = useState('');
+  const [isReadingPhoto, setIsReadingPhoto] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const nameInputRef = useRef<HTMLInputElement>(null);
+  const firstFocusRef = useRef<HTMLButtonElement>(null);
+  const returnTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const mounted = useRef(true);
 
-  const toggleFocus = (item: 'tanaman' | 'ikan' | 'ayam') => {
-    playPop();
-    setFocusList((prev) =>
-      prev.includes(item) ? (prev.length > 1 ? prev.filter((f) => f !== item) : prev) : [...prev, item]
-    );
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+      if (returnTimer.current) clearTimeout(returnTimer.current);
+    };
+  }, []);
+
+  const handleAvatarUpload = async (file?: File) => {
+    if (!file) return;
+    setAvatarError('');
+    if (!file.type.startsWith('image/')) { setAvatarError('Pilih berkas foto seperti JPG, PNG, atau WebP.'); return; }
+    if (file.size > 12 * 1024 * 1024) { setAvatarError('Ukuran foto maksimal 12 MB. Pilih foto yang lebih kecil.'); return; }
+    setIsReadingPhoto(true);
+    const objectUrl = URL.createObjectURL(file);
+    try {
+      const image = new Image();
+      image.src = objectUrl;
+      await image.decode();
+      if (!image.naturalWidth || !image.naturalHeight) throw new Error('Invalid image');
+      const canvas = document.createElement('canvas');
+      canvas.width = 256;
+      canvas.height = 256;
+      const context = canvas.getContext('2d');
+      if (!context) throw new Error('Canvas unavailable');
+      const side = Math.min(image.naturalWidth, image.naturalHeight);
+      context.fillStyle = '#fff8f5';
+      context.fillRect(0, 0, 256, 256);
+      context.drawImage(image, (image.naturalWidth - side) / 2, (image.naturalHeight - side) / 2, side, side, 0, 0, 256, 256);
+      if (mounted.current) setAvatarUrl(canvas.toDataURL('image/jpeg', 0.8));
+    } catch {
+      if (mounted.current) setAvatarError('Foto belum bisa dibaca. Coba pilih foto lain.');
+    } finally {
+      URL.revokeObjectURL(objectUrl);
+      if (mounted.current) setIsReadingPhoto(false);
+    }
   };
 
-  const handleSave = () => {
-    playSparkle();
-    onSaveProfile({
-      name: name.trim() || 'Sobat Tani',
-      region: region.trim() || 'Bandung, Jawa Barat',
-      careFocus: focusList,
-    });
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-      onBack();
-    }, 900);
+  const toggleFocus = (focus: CareFocus) => {
+    playPop(userProfile.soundEnabled);
+    setFocusList((previous) => previous.includes(focus) ? previous.filter((item) => item !== focus) : [...previous, focus]);
+    setFocusError('');
+  };
+
+  const handleSave = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (saved || isReadingPhoto) return;
+    if (!name.trim()) { setNameError('Tulis nama yang ingin ditampilkan.'); nameInputRef.current?.focus(); return; }
+    if (!focusList.length) { setFocusError('Pilih setidaknya satu jenis yang ingin dirawat.'); firstFocusRef.current?.focus(); return; }
+    setNameError('');
+    onSaveProfile({ name: name.trim(), region: region.trim(), careFocus: focusList, avatarUrl });
+    playSparkle(userProfile.soundEnabled);
+    setSaved(true);
+    returnTimer.current = setTimeout(onBack, 1000);
   };
 
   return (
-    <div className="flex-1 flex flex-col relative w-full pb-24 bg-[#fff8f5] select-none">
-      {/* 1. Header Bar */}
-      <header className="fixed top-0 inset-x-0 z-40 bg-[#fff8f5]/95 backdrop-blur-md shadow-xs border-b border-[#ffe4d6]">
-        <div className="h-16 px-4 flex items-center justify-between max-w-md mx-auto">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => {
-                playPop();
-                onBack();
-              }}
-              aria-label="Kembali"
-              className="w-10 h-10 rounded-full bg-[#ffeadb] flex items-center justify-center text-[#2b1704] active:translate-y-0.5 transition-all shadow-[0_2px_0_0_#fad3b3] cursor-pointer hover:bg-[#ffe3ce]"
-            >
-              <span className="material-symbols-outlined text-[22px]">arrow_back</span>
-            </button>
-            <div className="flex flex-col">
-              <h1 className="font-extrabold text-base text-[#2b1704]">Edit Profil Petani</h1>
-              <span className="text-[10px] text-[#0E8551] font-bold">Identitas Digital Sobat Tani</span>
-            </div>
+    <div className="sc-screen sc-edit-profile">
+      <header className="sc-header"><button type="button" className="sc-icon-button" onClick={onBack} aria-label="Kembali ke pengaturan"><ArrowLeft size={23} /></button><div><h1>Ubah profil</h1><p>Nama dan kebun Anda</p></div></header>
+      <main className="sc-main">
+        <form className="sc-profile-form" onSubmit={handleSave} noValidate>
+          <section className="sc-avatar-section" aria-labelledby="sc-photo-label">
+            <div className="sc-avatar-preview"><img src={avatarUrl} alt="Pratinjau foto profil" onError={(event) => { event.currentTarget.src = '/assets/generated/avatar-penyuluh.png'; }} /></div>
+            <div><h2 id="sc-photo-label">Foto profil</h2><p>Foto disimpan di perangkat ini.</p><button type="button" className="sc-button sc-button-light" onClick={() => fileInputRef.current?.click()} disabled={isReadingPhoto || saved}><Camera size={17} />{isReadingPhoto ? 'Membaca foto…' : 'Ganti foto'}</button></div>
+            <input ref={fileInputRef} type="file" accept="image/*" className="sr-only" tabIndex={-1} aria-label="Pilih foto profil" onChange={(event) => { const file = event.target.files?.[0]; event.target.value = ''; void handleAvatarUpload(file); }} />
+          </section>
+          {avatarError && <p className="sc-field-error" role="alert">{avatarError}</p>}
+
+          <div className="sc-card sc-form-card">
+            <div className="sc-field"><label htmlFor="sc-name">Nama panggilan <span>Wajib</span></label><div className="sc-input-wrap"><UserRound size={19} aria-hidden="true" /><input ref={nameInputRef} id="sc-name" type="text" autoComplete="nickname" maxLength={60} value={name} onChange={(event) => { setName(event.target.value); if (nameError) setNameError(''); }} placeholder="Nama yang ingin ditampilkan" aria-invalid={Boolean(nameError)} aria-describedby={nameError ? 'sc-name-error' : undefined} disabled={saved} /></div>{nameError && <p id="sc-name-error" className="sc-field-error" role="alert">{nameError}</p>}</div>
+            <div className="sc-field"><label htmlFor="sc-region">Daerah tempat tinggal <span>Opsional</span></label><div className="sc-input-wrap"><MapPin size={19} aria-hidden="true" /><input id="sc-region" type="text" autoComplete="address-level2" maxLength={100} value={region} onChange={(event) => setRegion(event.target.value)} placeholder="Contoh: Bandung, Jawa Barat" disabled={saved} /></div><p className="sc-field-help">Cukup nama kota atau kabupaten, tanpa alamat lengkap.</p></div>
+            <fieldset className="sc-focus-field" aria-describedby={focusError ? 'sc-focus-error' : undefined}><legend>Yang ingin dirawat</legend><p>Pilih satu atau lebih.</p><div className="sc-focus-options">{[{ id: 'tanaman' as const, label: 'Tanaman', Icon: Leaf }, { id: 'ikan' as const, label: 'Ikan', Icon: Fish }, { id: 'ayam' as const, label: 'Ayam', Icon: Wheat }].map(({ id, label, Icon }, index) => <button ref={index === 0 ? firstFocusRef : undefined} key={id} type="button" className={focusList.includes(id) ? 'is-selected' : ''} aria-pressed={focusList.includes(id)} onClick={() => toggleFocus(id)} disabled={saved}><Icon size={23} /><span>{label}</span>{focusList.includes(id) && <Check size={15} className="sc-focus-check" />}</button>)}</div>{focusError && <p id="sc-focus-error" className="sc-field-error" role="alert">{focusError}</p>}</fieldset>
+            <div className="sc-field"><label htmlFor="sc-profile-email">Email profil <span>Pratinjau lokal</span></label><input id="sc-profile-email" type="email" className="sc-readonly-input" value={userProfile.email || ''} readOnly placeholder="Belum diisi" /><p className="sc-field-help">Email belum diverifikasi dan belum terhubung ke akun server.</p></div>
           </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="flex-1 flex flex-col pt-16 px-4 max-w-md mx-auto w-full gap-5 pb-12 mt-2">
-        {/* Live Preview: Kartu Tanda Petani Digital (Digital Farmer Pass) */}
-        <div className="relative overflow-hidden rounded-3xl p-5 bg-gradient-to-br from-[#0E8551] via-[#006a3e] to-[#004a29] text-white shadow-[0_6px_0_0_#00381f] border border-emerald-300/30">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
-
-          {/* Card Header */}
-          <div className="flex items-center justify-between pb-3 border-b border-white/20">
-            <div className="flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-amber-300 text-lg">eco</span>
-              <span className="font-extrabold text-xs uppercase tracking-wider text-amber-200">
-                Kartu Tani Digital Dewi Sri
-              </span>
-            </div>
-            <span className="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold">#DS-2026</span>
-          </div>
-
-          {/* Card Body */}
-          <div className="flex items-center gap-4 mt-3">
-            <div className="relative flex-shrink-0">
-              <div className="w-16 h-16 rounded-2xl bg-white/20 p-1 backdrop-blur-xs border-2 border-white/40 overflow-hidden shadow-md">
-                <img
-                  src={userProfile.avatarUrl}
-                  alt={name}
-                  className="w-full h-full object-cover rounded-xl"
-                />
-              </div>
-              <label
-                htmlFor="avatar-upload"
-                className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-amber-400 text-[#564500] flex items-center justify-center shadow-sm cursor-pointer hover:scale-110 transition-transform"
-              >
-                <span className="material-symbols-outlined text-[13px] font-bold">photo_camera</span>
-              </label>
-              <input
-                id="avatar-upload"
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  if (file) {
-                    const url = URL.createObjectURL(file);
-                    onSaveProfile({ avatarUrl: url });
-                  }
-                }}
-              />
-            </div>
-
-            <div className="flex-1 min-w-0 flex flex-col">
-              <div className="flex items-center gap-1">
-                <h3 className="font-extrabold text-lg text-white truncate leading-tight">
-                  {name || 'Sobat Tani'}
-                </h3>
-                <span className="material-symbols-outlined text-amber-300 text-sm">verified</span>
-              </div>
-              <span className="text-xs text-emerald-100 flex items-center gap-1 mt-0.5 truncate">
-                <span className="material-symbols-outlined text-xs">location_on</span>
-                {region || 'Jawa Barat, Indonesia'}
-              </span>
-              <div className="flex items-center gap-1 mt-2">
-                {focusList.map((f) => (
-                  <span
-                    key={f}
-                    className="text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-white/25 text-white backdrop-blur-xs uppercase"
-                  >
-                    {f === 'tanaman' ? '🌱 Tanaman' : f === 'ikan' ? '🐟 Ikan' : '🐣 Ayam'}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Input Form Card */}
-        <div className="bg-white rounded-3xl p-5 shadow-xs border border-[#ffeadb] flex flex-col gap-4">
-          <h4 className="font-extrabold text-sm text-[#2b1704]">Informasi Pribadi</h4>
-
-          {/* Nama Panggilan */}
-          <div>
-            <label className="block text-xs font-bold text-[#2b1704] mb-1.5" htmlFor="nama-panggilan">
-              Nama Petani
-            </label>
-            <div className="relative flex items-center">
-              <input
-                id="nama-panggilan"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Tulis nama panggilanmu"
-                className="w-full h-12 rounded-2xl bg-[#fff8f5] px-4 text-[#2b1704] text-xs font-bold outline-none border border-[#ffeadb] focus:border-[#0E8551] focus:bg-white transition-all shadow-inner"
-              />
-              <span className="material-symbols-outlined absolute right-4 text-[#6e7a70] text-[20px] pointer-events-none">
-                badge
-              </span>
-            </div>
-          </div>
-
-          {/* Asal Daerah */}
-          <div>
-            <label className="block text-xs font-bold text-[#2b1704] mb-1.5" htmlFor="asal-daerah">
-              Daerah / Wilayah Sawah
-            </label>
-            <div className="relative flex items-center">
-              <input
-                id="asal-daerah"
-                type="text"
-                value={region}
-                onChange={(e) => setRegion(e.target.value)}
-                placeholder="Contoh: Bandung, Jawa Barat"
-                className="w-full h-12 rounded-2xl bg-[#fff8f5] px-4 text-[#2b1704] text-xs font-bold outline-none border border-[#ffeadb] focus:border-[#0E8551] focus:bg-white transition-all shadow-inner"
-              />
-              <span className="material-symbols-outlined absolute right-4 text-[#6e7a70] text-[20px] pointer-events-none">
-                location_on
-              </span>
-            </div>
-          </div>
-
-          {/* Fokus Tani Spesialisasi */}
-          <div>
-            <label className="block text-xs font-bold text-[#2b1704] mb-2">
-              Fokus Perawatan Utama
-            </label>
-            <div className="grid grid-cols-3 gap-2">
-              {[
-                { key: 'tanaman' as const, label: 'Tanaman', icon: '🌱' },
-                { key: 'ikan' as const, label: 'Kolam Ikan', icon: '🐟' },
-                { key: 'ayam' as const, label: 'Ternak Ayam', icon: '🐣' },
-              ].map((opt) => {
-                const isSelected = focusList.includes(opt.key);
-                return (
-                  <button
-                    key={opt.key}
-                    type="button"
-                    onClick={() => toggleFocus(opt.key)}
-                    className={`h-11 rounded-2xl border flex items-center justify-center gap-1.5 text-xs font-extrabold transition-all cursor-pointer ${
-                      isSelected
-                        ? 'bg-[#e8f7ee] border-[#006a3e] text-[#006a3e] shadow-xs'
-                        : 'bg-white border-[#ffeadb] text-[#6e7a70] hover:border-emerald-300'
-                    }`}
-                  >
-                    <span>{opt.icon}</span>
-                    <span>{opt.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Email (Readonly) */}
-          <div>
-            <label className="block text-xs font-bold text-[#2b1704] mb-1.5" htmlFor="email-field">
-              Alamat Email Terdaftar
-            </label>
-            <div className="relative flex items-center opacity-85">
-              <input
-                id="email-field"
-                type="email"
-                value={userProfile.email}
-                readOnly
-                className="w-full h-12 rounded-2xl bg-[#fff1e8] px-4 text-[#6e7a70] text-xs font-medium outline-none cursor-not-allowed border border-[#ffeadb]"
-              />
-              <span className="material-symbols-outlined absolute right-4 text-[#6e7a70] text-[18px] pointer-events-none">
-                lock
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex flex-col gap-2 pt-1">
-          <button
-            onClick={handleSave}
-            type="button"
-            className="w-full h-12 rounded-full bg-[#0E8551] hover:bg-[#0b6e43] text-white font-extrabold text-sm shadow-[0_4px_0_0_#00522f] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-2 cursor-pointer"
-          >
-            <span className="material-symbols-outlined text-[20px]">save</span>
-            <span>Simpan Perubahan</span>
-          </button>
-          <button
-            onClick={() => {
-              playPop();
-              onBack();
-            }}
-            type="button"
-            className="w-full py-2.5 text-center text-[#6e7a70] font-bold text-xs hover:text-[#2b1704] cursor-pointer"
-          >
-            Kembali
-          </button>
-        </div>
-
-        {/* Success Toast Banner */}
-        {showToast && (
-          <div className="fixed bottom-6 left-4 right-4 max-w-sm mx-auto bg-[#0E8551] text-white p-3.5 rounded-2xl shadow-xl flex items-center gap-3 animate-fade-in z-50">
-            <span className="material-symbols-outlined text-[24px]">task_alt</span>
-            <div className="flex-1">
-              <div className="font-extrabold text-sm">Profil Berhasil Disimpan!</div>
-              <div className="text-xs opacity-90">Data Kartu Tani digitalmu telah diperbarui.</div>
-            </div>
-          </div>
-        )}
+          <div className="sc-form-actions"><button type="submit" className="sc-button sc-button-primary" disabled={isReadingPhoto || saved}>{saved ? <Check size={20} /> : <Save size={20} />}{saved ? 'Perubahan tersimpan' : 'Simpan perubahan'}</button><button type="button" className="sc-button sc-button-plain" onClick={onBack} disabled={saved}>Batal</button></div>
+          {saved && <p className="sc-save-confirmation" role="status"><Check size={18} />Profil tersimpan di browser ini.</p>}
+        </form>
       </main>
     </div>
   );
-};
+}
