@@ -109,6 +109,12 @@
         "transparent": true,
         "derivative": "daily-calendar-v2.webp",
         "prompt": "Use case: stylized-concept. Asset type: simple transparent 3D action illustration for an Indonesian farming mobile app. One small cream desk calendar with a sage green rigid stand and terracotta binding rings. Six large rounded blank squares on the page, exactly one ochre checkmark. No letters, no digits, no plant or leaves, no face, no glow, no shadow outside the object, no haze. Soft matte clay-like paper and painted wood, believable object proportions, angled three quarter view, full calendar centered with generous transparent padding. Clean alpha cutout of the calendar only, everything outside its physical silhouette is fully transparent."
-      }
+      },
+    {
+      "file": "sky-morning-v1.png",
+      "transparent": false,
+      "derivative": "sky-morning-v1.webp",
+      "prompt": "Use case: stylized-concept. Asset type: seamless-feeling sky background illustration for the top of a mobile Indonesian farming dashboard. A bright fresh pale azure blue morning sky with soft fluffy white cumulus clouds. Clear open blue at the very top; a few soft sunlit clouds near the side edges and across the middle-lower part. Subtle airy dimensional painterly 3D softness like a polished friendly farming app, gentle daylight, no sharp photographic grain. Portrait composition, no horizon and no ground, no trees, no leaves, no animals, no characters, no buildings, no sun disc, no interface, no text, no logos, no icons. Broad calm spaces so dark UI labels remain readable. Blue and white only; the app will fade the bottom to warm cream using CSS."
+    }
   ]
 }

@@ -1,17 +1,28 @@
-.garden-home-v2 { display: grid; gap: 20px; }
+.garden-app--beranda { background: linear-gradient(180deg, #f3fbff66, #fffaf2 720px), url('/assets/generated/sky-morning-v1.webp') center top / cover no-repeat; }
+.garden-home-v2 {
+  --home-sky-height: 560px;
+  display: grid;
+  gap: 20px;
+  background-color: var(--paper);
+  background-image: linear-gradient(180deg, #fffaf200 0%, #fffaf200 30%, #fffaf2 100%), linear-gradient(#f3fbff66, #f3fbff66), url('/assets/generated/sky-morning-v1.webp');
+  background-size: 100% var(--home-sky-height);
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+.garden-home-v2 .app-brand small, .gh-greeting > p, .gh-profile { color: #294e46; }
 .gh-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .gh-header-actions { display: flex; align-items: center; gap: 8px; }
-.gh-header .icon-button { width: 44px; min-width: 44px; height: 44px; background: #fffdf8; }
-.gh-profile { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 44px; padding: 0; color: var(--muted); font-size: .65rem; font-weight: 800; }
+.gh-header .icon-button { width: 44px; min-width: 44px; height: 44px; border-color: #ffffffc9; background: #ffffffb8; }
+.gh-profile { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 44px; padding: 0; color: #294e46; font-size: .65rem; font-weight: 800; }
 .gh-profile img { width: 35px; height: 35px; object-fit: cover; border: 2px solid #fff; border-radius: 50%; background: var(--leaf); }
 .gh-greeting { position: relative; padding-right: 52px; }
-.gh-greeting > p { color: var(--muted); font-size: .88rem; margin-bottom: 4px; }
+.gh-greeting > p { color: #294e46; font-size: .88rem; margin-bottom: 4px; }
 .gh-greeting h1 { font-size: 1.9rem; }
-.gh-schedule-bell { position: absolute; top: 5px; right: 0; display: grid; place-items: center; width: 44px; height: 44px; color: var(--forest); border: 1px solid var(--line); border-radius: 14px; background: white; }
+.gh-schedule-bell { position: absolute; top: 5px; right: 0; display: grid; place-items: center; width: 44px; height: 44px; color: var(--forest); border: 1px solid #ffffffc9; border-radius: 14px; background: #ffffffcf; }
 .gh-schedule-bell > span { position: absolute; top: -6px; right: -4px; display: grid; place-items: center; min-width: 21px; height: 21px; padding: 0 4px; background: var(--forest); color: white; border: 2px solid var(--paper); border-radius: 50%; font-size: .62rem; font-weight: 900; }
 .gh-garden { min-width: 0; }
-.gh-categories { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 5px; margin-bottom: 12px; border: 1px solid #e0e7d8; border-radius: 17px; background: #eff3e8; }
-.gh-categories button { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 45px; padding: 9px 3px; border: 1px solid transparent; border-radius: 12px; color: #576c56; font-size: .9rem; font-weight: 850; }
+.gh-categories { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 5px; margin-bottom: 12px; border: 1px solid #ffffffc9; border-radius: 17px; background: #f7fdffb8; box-shadow: 0 4px 14px #2b687c0d; }
+.gh-categories button { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 45px; padding: 9px 3px; border: 1px solid transparent; border-radius: 12px; color: #395b51; font-size: .9rem; font-weight: 850; }
 .gh-categories button:hover { background: #fff9; }
 .gh-categories button.is-active { background: white; color: var(--forest); border-color: #d6e4cc; box-shadow: 0 3px 8px #27482d09; }
 .gh-habitat { position: relative; isolation: isolate; height: 248px; overflow: hidden; border-radius: 25px; background-size: cover; background-position: center 62%; background-color: #b6d3a0; }

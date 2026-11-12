@@ -122,7 +122,7 @@ export default function App() {
   const acknowledgePhotoPrompt = useCallback(() => setPhotoHelpRequested(false), []);
   const farmerRank = { level: rankInfo.level, title: rankInfo.title, subtitle: rankInfo.subtitle, currentCare: rankInfo.current, targetCare: rankInfo.max, description: '' };
 
-  return <div className="garden-app"><a className="skip-link" href="#page-content">Lewati ke isi halaman</a><div className={`garden-shell garden-shell--${activeScreen}`} data-screen={activeScreen}>
+  return <div className={`garden-app garden-app--${activeScreen}`}><a className="skip-link" href="#page-content">Lewati ke isi halaman</a><div className={`garden-shell garden-shell--${activeScreen}`} data-screen={activeScreen}>
     {storageUnavailable && <div className="status-note status-note--warning storage-notice" role="status"><Info size={18} /><span>Penyimpanan perangkat sedang tidak tersedia atau penuh. Perubahan tetap bisa dipakai selama halaman ini terbuka.</span></div>}
     <div id="page-content" tabIndex={-1}>
       {activeScreen === 'welcome' && <WelcomeScreen onStart={() => navigate('beranda')} onOpenLogin={() => navigate('login')} onOpenRegister={() => navigate('register')} />}

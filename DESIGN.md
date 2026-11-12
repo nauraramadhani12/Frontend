@@ -42,3 +42,5 @@ Tanaman harus dikenali jenisnya dan tidak diberi mata, hidung, atau wajah. Hewan
 ENERGY 2 / RHYTHM 2 / MOTION 1. Kehangatan berasal dari warna daun, bahan terakota, dan habitat tani. Habitat menjadi fokus visual, kartu aksi dikelompokkan setara, lalu catatan harian mendapat ruang baca tersendiri. Gerak hanya berupa respons singkat saat hover atau tekan. Tidak ada karakter melayang atau animasi dekoratif berulang.
 
 Ikon garis dipakai untuk mengenali tindakan dan tujuan navigasi. Latar krem di atas ilustrasi menjaga kontras nama spesies. Sudut bundar menyatukan elemen yang disentuh; lingkaran hanya untuk ikon kecil, bukan seluruh komponen.
+
+Latar beranda memakai langit biru muda dan awan putih lembut, mengikuti referensi dashboard terbaru. Langit memudar ke krem di sekitar bagian bawah habitat agar kegiatan dan catatan tetap tenang dibaca. Label kepala halaman memakai hijau gelap, sementara kontrol kategori memakai bidang putih yang cukup pekat untuk menjaga kontras.

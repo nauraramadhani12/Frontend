@@ -80,3 +80,7 @@ ENERGY 2 / RHYTHM 2 / MOTION 1 sesuai hasil: habitat sebagai fokus, kelompok aks
 ## Batas pemeriksaan
 
 Pemilih foto native dan `capture="environment"` diperiksa dari browser. Kamera fisik ponsel dan tampilan izin sistem operasi belum dicoba di perangkat nyata. AI analisis gambar, cuaca langsung, autentikasi server, sinkronisasi, dan push notification memang belum disambungkan pada tahap frontend ini.
+
+## Pembaruan latar langit
+
+PASS: beranda memakai aset `sky-morning-v1.webp` dengan langit biru dan awan yang memudar ke krem. Teks kepala halaman digelapkan dan pilihan kategori memakai bidang putih lembut. Build produksi berhasil; Chromium pada 320/390/1440 px tidak menunjukkan overflow atau page error, dan perpindahan Beranda → Jadwal → Beranda tetap bekerja. Pratinjau tersedia di `.artifacts/sky-fish-390.png` dan `.artifacts/sky-home-320.png`.
